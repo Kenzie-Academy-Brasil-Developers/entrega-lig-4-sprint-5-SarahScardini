@@ -5,14 +5,14 @@ const criarTabela = () => {
     
     for(let i = 0; i < 7; i++){
         const divColuna = document.createElement('div');
-        divColuna.setAttribute('class', 'coluna')
+        divColuna.setAttribute('class', 'colunas')
         divColuna.setAttribute('data-col', i);
 
         divColuna.addEventListener('click', insereDisco);
 
         for(let j = 0; j < 6; j++){
             const divLinha = document.createElement('div');
-            divLinha.setAttribute('class', 'linha')
+            divLinha.setAttribute('class', 'caixas')
             divLinha.setAttribute('data-linha', j)
 
             divColuna.appendChild(divLinha);
@@ -35,16 +35,10 @@ const verifica = (e) => {
 }
 
 function insereDisco(evt) {
-    console.log(evt)
-    console.log('target', evt.target)
-    console.log('currentTarget', evt.currentTarget)
-
     const disco = document.createElement('div');
     disco.setAttribute('id', 'disco')
 
-    let celulaVaga = verifica(evt);
-    
+    let celulaVaga = verifica(evt);    
     celulaVaga.appendChild(disco);
 
 }
-
