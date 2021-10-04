@@ -1,0 +1,41 @@
+#titulo{   
+    text-align: center;
+}
+.colunas{
+    flex-direction: column-reverse;
+    width: 100%;
+    height: 300px;
+    background-color:rgb(42, 139, 230)  ;
+}
+.caixas{
+    height: 48px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid rgb(42, 139, 230);
+}
+/* div.caixas{background-color:red;
+border: 1px solid black} */
+/* div.caixas{background-color:yellow;
+border: 1px solid black} */
+#tabelas{
+    display: flex;
+    border: 4px solid black;
+    width: 350px;
+}
+
+@media (min-width:700px){
+    #titulo{
+        text-align: start;
+    }
+    .colunas{
+        width: 100%;
+        height: 600px;
+    }
+    #tabelas{
+        width: 700px;
+    }
+    .caixas{
+        height: 96px;
+        border: 2px solid rgb(42, 139, 230);
+    }
+}
