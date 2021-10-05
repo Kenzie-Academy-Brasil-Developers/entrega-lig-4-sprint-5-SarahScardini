@@ -1,33 +1,109 @@
-let corpo = document.querySelector('body');
-let tabelas = document.querySelector('#tabelas');
-//criando a tabela e adicionando grades internas para cada peça.
-window.onload = function gerarTabela(){
-    for(let i = 1; i < 8; i++){
-        
-        const div = document.createElement('div');
+// CRIAR A TABELA 6 LINHA X 7 COLUNAS
+const tabela = document.querySelector('#tabela')
+let player      = true;
+let contPlayer1 = 0;
+let contPlayer2 = 0;
 
-        div.classList.add("colunas");
+const matriz = [[]];
 
-        div.setAttribute('id',  "coluna"+ i);
+const criarTabela = () => {
     
-        tabelas.appendChild(div);
-    }
-    for(let c = 1; c < 8; c++){
-        
-        let colunas = document.getElementById('coluna'+c);
-        
-        for(let w = 1;w < 7;w++){
-            
-            const div = document.createElement('div');
+    for(let i = 0; i < 7; i++){
+        const divColuna = document.createElement('div');
+        divColuna.setAttribute('class', 'colunas')
+        divColuna.setAttribute('data-col', i);
 
-            div.classList.add("caixas")
-        
-            colunas.appendChild(div);
+        divColuna.addEventListener('click', insereDisco);
+
+        for(let j = 0; j < 6; j++){
+            const divLinha = document.createElement('div');
+            divLinha.setAttribute('class', 'caixas')
+            divLinha.setAttribute('data-linha', j)
+            divLinha.setAttribute('data-col', i)
+
+            divColuna.appendChild(divLinha);
+
         }
+        tabela.appendChild(divColuna)
     }
-    
-    
- };
+}
+criarTabela();
 
+const verifica = (e) => {
+    let elementoVazio = e.currentTarget.childNodes;
 
- 
+        for (let i = e.currentTarget.childNodes.length - 1; i >= 0; i--){
+
+            if (elementoVazio[i].innerHTML === '') {
+                let posicao = elementoVazio[i];
+                
+                console.log(posicao)
+               
+                return e.currentTarget.childNodes[i];
+            }
+        }
+}
+
+const validaUltimo = (idPlayer, elemento) => {
+        let linhaX  = elemento.dataset.linha;
+        let colunaY = elemento.dataset.col;
+
+        let linhaInteira = document.querySelectorAll(`div[data-linha='${linhaX}']`)
+        let colunaInteira = document.querySelectorAll(`div[data-col='${colunaY}']`)
+
+        console.log('linha inteira', linhaInteira)
+        console.log('coluna inteira', colunaInteira)
+
+        console.log('linha', linhaX)
+        console.log('coluna', colunaY)
+
+        
+        for(let i = 0; i < linhaInteira.length; i++){ 
+            if (linhaInteira[i].firstChild.id === idPlayer){
+                console.log('igual', i)
+            } else {
+                return console.log('não foi sequencia')
+            }
+            
+        }
+    
+}
+
+function insereDisco(evt) {
+
+    switch(player){
+        case true: {
+            //player1
+            const disco = document.createElement('div');
+            disco.setAttribute('class', 'disco')
+            disco.setAttribute('id', 'disco__p1')
+
+            const idP1 = 'disco__p1';
+
+            let celulaVaga = verifica(evt);    
+            
+            celulaVaga.appendChild(disco);
+            contPlayer1++;
+
+            if (contPlayer1 === 4){
+                validaUltimo(idP1,  celulaVaga)
+            }
+            player = !player;   
+        break;
+        }            
+
+        case false: {
+            // player2
+            const disco = document.createElement('div');
+            disco.setAttribute('class', 'disco')
+            disco.setAttribute('id', 'disco__p2')
+
+            let celulaVaga = verifica(evt);    
+            celulaVaga.appendChild(disco);
+
+            contPlayer2++;
+            player = !player;   
+        break;
+        }     
+    }  
+}
