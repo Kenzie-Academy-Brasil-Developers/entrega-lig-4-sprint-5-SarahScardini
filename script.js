@@ -120,3 +120,6 @@ function insereDisco(evt) {
         }     
     }  
 }
+const textoVitoria = document.createElement('div');
+textoVitoria.innerHTML()
+document.querySelector('.container').appendChild(textoVitoria);
