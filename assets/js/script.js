@@ -3,14 +3,17 @@ let player = true;
 let contPlayer1 = 0;
 let contPlayer2 = 0;
 
-const matriz = [
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-];
+const matriz = [];
+const zeraMatriz = () => {
+    for (let i = 0; i < 6; i++) {
+        let row = [];
+        for (let j = 0; j < 7; j++) {
+        row.push(0);
+        }
+        matriz.push(row);
+    }
+}
+zeraMatriz();
 
 // CRIAR A TABELA 6 LINHA X 7 COLUNAS
 const criarTabela = () => {
@@ -40,6 +43,7 @@ criarTabela();
 let botaoReset = () =>{
     const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
     criarTabela();
+    zeraMatriz();
 }
 
 let gerarBotao = () =>{
@@ -92,24 +96,24 @@ const win = (idPlayer, elemento) => {
                 counterRow++
             }
         }
-        if (counterRow === 3) {
+        if (counterRow >= 3) {
             console.log(`Jogador ${playerNumber} ganhou!!!`)
             // return winMessage()
         }
     }
 
     // CONFERE POR COLUNA
-    let counterCol = 0;
     for (let m = 0; m < matriz.length; m++) {
+        let counterCol = 0;
         for (let n = 0; n < matriz.length-1; n++) {
             if (matriz[n][m] === playerNumber &&
                 matriz[n][m] === matriz[n + 1][m])
                 counterCol++
         }
-    }
-    if (counterCol === 3) {
-        console.log(`Jogador ${playerNumber} ganhou!!!`)
-        // return winMessage()
+        if (counterCol >= 3) {
+            console.log(`Jogador ${playerNumber} ganhou!!!`)
+            // return winMessage()
+        }
     }
 }
 
@@ -154,6 +158,6 @@ function insereDisco(evt) {
     }
 }
 
-const textoVitoria = document.createElement('div');
-textoVitoria.innerHTML()
-document.querySelector('.container').appendChild(textoVitoria);
+// const textoVitoria = document.createElement('div');
+// textoVitoria.innerHTML()
+// document.querySelector('.container').appendChild(textoVitoria);
