@@ -28,6 +28,19 @@ const criarTabela = () => {
     }
 }
 criarTabela();
+let botaoReset = () =>{
+    const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
+    criarTabela();
+}
+let gerarBotao = () =>{
+    const botao = document.createElement('button');
+    botao.innerText = 'Reset';
+    botao.setAttribute('class','reset');
+    document.querySelector('.container').appendChild(botao);
+    const reset = document.querySelector('.reset');
+    reset.onclick = botaoReset;
+}
+gerarBotao();
 
 const verifica = (e) => {
     let elementoVazio = e.currentTarget.childNodes;
