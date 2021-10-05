@@ -35,10 +35,13 @@ const criarTabela = () => {
     }
 }
 criarTabela();
+
+// RESET
 let botaoReset = () =>{
     const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
     criarTabela();
 }
+
 let gerarBotao = () =>{
     const botao = document.createElement('button');
     botao.innerText = 'Reset';
