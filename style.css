@@ -34,22 +34,28 @@
 #titulo{   
     text-align: center;
 }
+
 .colunas{
     flex-direction: column-reverse;
     width: 100%;
     height: 300px;
     background-color:rgb(42, 139, 230)  ;
 }
+
 .caixas{
     height: 48px;
     background-color: white;
     border-radius: 50%;
     border: 1px solid rgb(42, 139, 230);
 }
+
 /* div.caixas{background-color:red;
 border: 1px solid black} */
+
 /* div.caixas{background-color:yellow;
 border: 1px solid black} */
+
+
 #tabela{
     display: flex;
     border: 4px solid black;
@@ -58,14 +64,21 @@ border: 1px solid black} */
     position: relative;
 }
 
-#disco {
+.disco {
     width: 96px;
     height: 96px;
-    border: 1px solid black;
     border-radius: 50px;
     background-color: black;
     position: absolute;
 } 
+
+#disco__p1 {
+    background-color:red;
+}
+
+#disco__p2 {
+    background-color:yellow;
+}
 
 @media (min-width:700px){
     #titulo{
