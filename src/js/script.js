@@ -45,6 +45,12 @@ const mensagemVitoria = (vencedor) => {
     clearInterval(timer);
     textoVitoria.innerText = (`Jogador ${vencedor} ganhou!!!`);
     document.querySelector('#resultado').appendChild(textoVitoria);
+    if (vencedor === 1) {
+        points1++
+    } else {
+        points2++
+    }
+    score();
 }
 
 // EMPATE
@@ -143,15 +149,15 @@ const win = (idPlayer, elemento) => {
         }
     }
 
-    // Diag direita baixo/esquerda cima
-    for (let a = 0; a < matriz.length - 3; a++){
-        for (let b = 0;b <= matriz.length - 3; b++){
+    // DIAGONAL DIREITA BAIXO/ESQUERDA CIMA
+    for (let a = 0; a < matriz.length - 3; a++) {
+        for (let b = 0; b <= matriz.length - 3; b++) {
             if (matriz[a][b] === playerNumber &&
                 matriz[a + 1][b + 1] === playerNumber &&
                 matriz[a + 2][b + 2] === playerNumber &&
-                matriz[a + 3][b + 3] === playerNumber){
+                matriz[a + 3][b + 3] === playerNumber) {
                 return mensagemVitoria(playerNumber);
-             }
+            }
         }
     }
 
@@ -182,7 +188,7 @@ const win = (idPlayer, elemento) => {
     //         }
     //     }
     // }
-  
+
     ////VERSÃO GUSTAVO
     // // VITÓRIA LINHA
     // for (let i = 0; i < linhaInteira.length; i++) {
@@ -212,30 +218,31 @@ const win = (idPlayer, elemento) => {
     //     }
     // }
 
-    // let discoDiagonalEsqBaixo = 0;
-    // let colAnteriorY = colunaY;
-    // let linhaXAnt = linhaX;
+//     let discoDiagonalEsqBaixo = 0;
+//     let colAnteriorY = colunaY;
+//     let linhaXAnt = linhaX;
 
-    // VITÓRIA DIAGONAL ESQUERDA BAIXO
-    // for (let k = 1; k < 4; k++) {
-    //     // div com o disco.coluna.tabela.filhos da tabela
-    //     let colAnterior = elemento.parentElement.parentElement.childNodes[--colAnteriorY];
-    //     if (colAnterior !== undefined) {
-    //         let discoAnterior = colAnterior.childNodes[++linhaXAnt]
-    //         if (discoAnterior !== undefined) {
-    //             if (discoAnterior.firstChild !== null) {
-    //                 if (discoAnterior.firstChild.id === idPlayer) {
-    //                     discoDiagonalEsqBaixo++;
-    //                     if (discoDiagonalEsqBaixo === 3) {
-    //                         console.log('ganhou', idPlayer)
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+//     // VITÓRIA DIAGONAL ESQUERDA BAIXO
+//     for (let k = 1; k < 4; k++) {
+//         // div com o disco.coluna.tabela.filhos da tabela
+//         let colAnterior = elemento.parentElement.parentElement.childNodes[--colAnteriorY];
+//         if (colAnterior !== undefined) {
+//             let discoAnterior = colAnterior.childNodes[++linhaXAnt]
+//             if (discoAnterior !== undefined) {
+//                 if (discoAnterior.firstChild !== null) {
+//                     if (discoAnterior.firstChild.id === idPlayer) {
+//                         discoDiagonalEsqBaixo++;
+//                         if (discoDiagonalEsqBaixo === 3) {
+//                             // console.log('ganhou', idPlayer)
+//                             return mensagemVitoria(playerNumber);
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
 
-    // VITÓRIA DIAGONAL ESQUERDA CIMA
+    // VITÓRIA DIAGONAL DIREITA
     // let discoDiagonalEsqCima = 0;
     //  let colPosteriorY = colunaY;
     //     let linhaXProx = linhaX;
@@ -257,7 +264,7 @@ const win = (idPlayer, elemento) => {
     //         }
     //     }
 
-                                                  
+    empate()
 }
   
 
@@ -332,7 +339,6 @@ const cronometro = () => {
         minutos++;
         segundos = 0;
     }
-
     cronometroBox.innerHTML = `Tempo: 0${minutos}:${segundos > 10 ? segundos :
         '0' + segundos}:${milisegundos}`;
 }
@@ -342,6 +348,18 @@ const resetaCronometro = () => {
     segundos = 0;
     milisegundos = 0;
     clearInterval(timer);
-    cronometroBox.innerHTML = `Tempo: 00:00:00`
+    cronometroBox.innerHTML = `Tempo: 00:00:00`;
 }
 resetaCronometro();
+
+// SCORE 
+let score1 = document.querySelector('.placar1');
+let score2 = document.querySelector('.placar2');
+let points1 = 0;
+let points2 = 0;
+
+const score = () => {
+    score1.innerHTML = `Jogador 1: ${points1}`;
+    score2.innerHTML = `Jogador 2: ${points2}`;
+};
+score();
