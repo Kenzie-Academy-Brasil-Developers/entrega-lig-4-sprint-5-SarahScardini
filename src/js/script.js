@@ -39,10 +39,29 @@ const criarTabela = () => {
 }
 criarTabela();
 
+// MENSAGEM VITÓRIA
+const textoVitoria = document.createElement('div');
+const mensagemVitoria = (vencedor) => {
+    clearInterval(timer);
+    textoVitoria.innerText = (`Jogador ${vencedor} ganhou!!!`);
+    document.querySelector('#resultado').appendChild(textoVitoria);
+}
+
+// EMPATE
+const empate = () => {
+    let matrizStr = matriz.toString().includes('0');
+    if (!matrizStr) {
+        textoVitoria.innerHTML = `Empate!`;
+        clearInterval(timer);
+    }
+}
+
 // RESET
 let botaoReset = () => {
     const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
     criarTabela();
+
+    textoVitoria.innerText = '';
 
     matriz = [];
     zeraMatriz();
@@ -100,33 +119,56 @@ const win = (idPlayer, elemento) => {
 
     // CONFERE POR LINHA
     for (let k = 0; k < matriz.length; k++) {
-        let counterRow = 0;
-        for (let l = 0; l < matriz[k].length - 1; l++) {
-            if (matriz[k][l] === playerNumber &&
-                matriz[k][l] === matriz[k][l + 1]) {
-                counterRow++
+        for (let l = 0; l < matriz[k].length - 3; l++) {
+            if (matriz[k][l] === playerNumber) {
+                if (matriz[k][l] === matriz[k][l + 1] &&
+                    matriz[k][l + 1] === matriz[k][l + 2] &&
+                    matriz[k][l + 2] === matriz[k][l + 3]) {
+                    return mensagemVitoria(playerNumber);
+                }
             }
-        }
-        if (counterRow >= 3) {
-            console.log(`Jogador ${playerNumber} ganhou!!!`)
-            // return winMessage()
         }
     }
 
     // CONFERE POR COLUNA
-    for (let m = 0; m < matriz.length; m++) {
-        let counterCol = 0;
-        for (let n = 0; n < matriz.length - 1; n++) {
-            if (matriz[n][m] === playerNumber &&
-                matriz[n][m] === matriz[n + 1][m])
-                counterCol++
-        }
-        if (counterCol >= 3) {
-            console.log(`Jogador ${playerNumber} ganhou!!!`)
-            // return winMessage()
+    for (let m = 0; m < matriz.length + 1; m++) {
+        for (let n = 0; n < matriz.length - 3; n++) {
+            if (matriz[n][m] === playerNumber) {
+                if (matriz[n][m] === matriz[n + 1][m] &&
+                    matriz[n + 1][m] === matriz[n + 2][m] &&
+                    matriz[n + 2][m] === matriz[n + 3][m]) {
+                    return mensagemVitoria(playerNumber);
+                }
+            }
         }
     }
 
+    // Diag direita baixo/esquerda cima
+    for (let a = 0; a < matriz.length - 3; a++){
+        for (let b = 0;b <= matriz.length - 3; b++){
+            if (matriz[a][b] === playerNumber &&
+                matriz[a + 1][b + 1] === playerNumber &&
+                matriz[a + 2][b + 2] === playerNumber &&
+                matriz[a + 3][b + 3] === playerNumber){
+                return mensagemVitoria(playerNumber);
+             }
+        }
+    }
+  
+    ////VERSÃO OTÁVIO
+    // Diag direita cima/esquerda baixo
+    // for (let a = 3; a < matriz.length; a++){
+    //     for (let b = 3;b <= matriz.length; b++){
+    //         if (matriz[a][b] === playerNumber &&
+    //             matriz[a - 1][b + 1] === playerNumber &&
+    //             matriz[a - 2][b + 2] === playerNumber &&
+    //             matriz[a - 3][b + 3] === playerNumber){
+    //             return mensagemVitoria(playerNumber);
+    //         }
+    //     }
+    // }
+  
+    ////VERSÃO GUSTAVO
     // // VITÓRIA LINHA
     // for (let i = 0; i < linhaInteira.length; i++) {
     //     if (linhaInteira[i].firstChild !== null) {
@@ -155,9 +197,9 @@ const win = (idPlayer, elemento) => {
     //     }
     // }
 
-    let discoDiagonalEsqBaixo = 0;
-    let colAnteriorY = colunaY;
-    let linhaXAnt = linhaX;
+    // let discoDiagonalEsqBaixo = 0;
+    // let colAnteriorY = colunaY;
+    // let linhaXAnt = linhaX;
 
     // VITÓRIA DIAGONAL ESQUERDA BAIXO
     // for (let k = 1; k < 4; k++) {
@@ -179,26 +221,26 @@ const win = (idPlayer, elemento) => {
     // }
 
     // VITÓRIA DIAGONAL ESQUERDA CIMA
-//     let discoDiagonalEsqCima = 0;
-//     let colPosteriorY = colunaY;
-//     let linhaXProx = linhaX;
-//     for (let k = 0; k < 3; k++) {
-//         // div com o disco.coluna.tabela.filhos da tabela
-//         let colAnteriorCima = elemento.parentElement.parentElement.childNodes[++colPosteriorY];
-//         if (colAnteriorCima !== undefined) {
-//             let discoAnteriorCima = colAnteriorCima.childNodes[++linhaXProx]
-//             if (discoAnteriorCima !== undefined) {
-//                 if (discoAnteriorCima.firstChild !== null) {
-//                     if (discoAnteriorCima.firstChild.id === idPlayer) {
-//                         discoDiagonalEsqCima++;
-//                         if (discoDiagonalEsqCima === 3) {
-//                             console.log('ganhou', idPlayer)
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
+    // let discoDiagonalEsqCima = 0;
+    //  let colPosteriorY = colunaY;
+    //     let linhaXProx = linhaX;
+    //     for (let k = 0; k < 3; k++) {
+    //         // div com o disco.coluna.tabela.filhos da tabela
+    //         let colAnteriorCima = elemento.parentElement.parentElement.childNodes[++colPosteriorY];
+    //         if (colAnteriorCima !== undefined) {
+    //             let discoAnteriorCima = colAnteriorCima.childNodes[++linhaXProx]
+    //             if (discoAnteriorCima !== undefined) {
+    //                 if (discoAnteriorCima.firstChild !== null) {
+    //                     if (discoAnteriorCima.firstChild.id === idPlayer) {
+    //                         discoDiagonalEsqCima++;
+    //                         if (discoDiagonalEsqCima === 3) {
+    //                             console.log('ganhou', idPlayer)
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
 
     let counterDiagEsq = 0;
     for (let q = 0; q < matriz.length - 1; q++) {//linha       
@@ -210,16 +252,15 @@ const win = (idPlayer, elemento) => {
                           counterDiagEsq++;
                           console.log('counterDiagEsq', counterDiagEsq);
                           console.log('matriz[q + 1][r - 1]', matriz[q + 1][r - 1])
-                    }
-                  
-            
-           
+                  }
         }
         if (counterDiagEsq >= 3) {
             console.log(`Jogador ${playerNumber} ganhou!!!`)
             // return winMessage()
         }
     }
+  
+    empate()
 }
 
 // INSERE DISCOS
@@ -262,14 +303,11 @@ function insereDisco(evt) {
         }
         contador();
         if (contPlayer1 + contPlayer2 === 1) {
-            timer = setInterval(() => { cronometro() }, 100);
+            timer = setInterval(() => { cronometro() }, 10);
         }
     }
 }
 
-// const textoVitoria = document.createElement('div');
-// textoVitoria.innerHTML()
-// document.querySelector('.container').appendChild(textoVitoria);
 
 // CONTADOR
 const contador = () => {
@@ -288,7 +326,7 @@ let milisegundos = 0;
 let timer;
 
 const cronometro = () => {
-    if ((milisegundos += 10) === 100) {
+    if ((milisegundos += 10) === 1000) {
         segundos++;
         milisegundos = 0;
     } if (segundos === 60) {
@@ -308,6 +346,3 @@ const resetaCronometro = () => {
     cronometroBox.innerHTML = `Tempo: 00:00:00`
 }
 resetaCronometro();
-
-// colocar dentro da winMessage() para pausar o cronometro
-// clearInterval(timer);

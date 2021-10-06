@@ -54,6 +54,14 @@
     flex-direction: column;
     align-items: center;
 }
+#resultado{
+    position: absolute;
+    right: 50%;
+    top: 60%;
+    transform: translate(50%,50%);
+    background-color: grey;
+    font-size: 20px;
+}
 
 .contador-cronometro__caixa{
     align-items: center;
@@ -107,5 +115,8 @@
     }
     .reset{
         font-size: 40px;
+    }
+    #resultado{
+        top: 50%;
     }
 }
