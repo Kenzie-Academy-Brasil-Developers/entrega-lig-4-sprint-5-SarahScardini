@@ -155,9 +155,9 @@ const win = (idPlayer, elemento) => {
     //     }
     // }
 
-    let discoDiagonalEsqBaixo = 0;
-    let colAnteriorY = colunaY;
-    let linhaXAnt = linhaX;
+    // let discoDiagonalEsqBaixo = 0;
+    // let colAnteriorY = colunaY;
+    // let linhaXAnt = linhaX;
 
     // VITÓRIA DIAGONAL ESQUERDA BAIXO
     // for (let k = 1; k < 4; k++) {
@@ -200,27 +200,23 @@ const win = (idPlayer, elemento) => {
 //         }
 //     }
 
-    let counterDiagEsq = 0;
-    for (let q = 0; q < matriz.length - 1; q++) {//linha       
-        console.log('matriz[q+1]', matriz[q+1])
-        for (let r = 0; r < matriz.length + 1; r++) {//coluna       
-                     
-                 if (matriz[q][r] === playerNumber &&
-                    matriz[q][r] === matriz[q + 1][r - 1]){
-                          counterDiagEsq++;
-                          console.log('counterDiagEsq', counterDiagEsq);
-                          console.log('matriz[q + 1][r - 1]', matriz[q + 1][r - 1])
-                    }
-                  
-            
-           
-        }
-        if (counterDiagEsq >= 3) {
-            console.log(`Jogador ${playerNumber} ganhou!!!`)
-            // return winMessage()
-        }
-    }
+   
+    for (let q = 0; q < matriz.length - 3; q++) {//linha       
+        for (let r = 0; r <= matriz.length; r++) {//coluna 
+            if (matriz[q][r] === playerNumber && 
+                matriz[q + 1][r - 1] === playerNumber &&
+                matriz[q + 2][r - 2] === playerNumber &&
+                matriz[q + 3][r - 3] === playerNumber){
+                    console.log(`Jogador ${playerNumber} ganhou!!!`)
+                    // return winMessage()
+    
+                 }
+            }
+                
+     }                                                 
 }
+  
+
 
 // INSERE DISCOS
 function insereDisco(evt) {
