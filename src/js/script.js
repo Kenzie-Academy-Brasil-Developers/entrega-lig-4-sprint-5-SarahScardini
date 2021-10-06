@@ -160,43 +160,62 @@ const win = (idPlayer, elemento) => {
     let linhaXAnt = linhaX;
 
     // VITÓRIA DIAGONAL ESQUERDA BAIXO
-    for (let k = 1; k < 4; k++) {
-        // div com o disco.coluna.tabela.filhos da tabela
-        let colAnterior = elemento.parentElement.parentElement.childNodes[--colAnteriorY];
-        if (colAnterior !== undefined) {
-            let discoAnterior = colAnterior.childNodes[++linhaXAnt]
-            if (discoAnterior !== undefined) {
-                if (discoAnterior.firstChild !== null) {
-                    if (discoAnterior.firstChild.id === idPlayer) {
-                        discoDiagonalEsqBaixo++;
-                        if (discoDiagonalEsqBaixo === 3) {
-                            console.log('ganhou', idPlayer)
-                        }
-                    }
-                }
-            }
-        }
-    }
+    // for (let k = 1; k < 4; k++) {
+    //     // div com o disco.coluna.tabela.filhos da tabela
+    //     let colAnterior = elemento.parentElement.parentElement.childNodes[--colAnteriorY];
+    //     if (colAnterior !== undefined) {
+    //         let discoAnterior = colAnterior.childNodes[++linhaXAnt]
+    //         if (discoAnterior !== undefined) {
+    //             if (discoAnterior.firstChild !== null) {
+    //                 if (discoAnterior.firstChild.id === idPlayer) {
+    //                     discoDiagonalEsqBaixo++;
+    //                     if (discoDiagonalEsqBaixo === 3) {
+    //                         console.log('ganhou', idPlayer)
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     // VITÓRIA DIAGONAL ESQUERDA CIMA
-    let discoDiagonalEsqCima = 0;
-    let colPosteriorY = colunaY;
-    let linhaXProx = linhaX;
-    for (let k = 0; k < 3; k++) {
-        // div com o disco.coluna.tabela.filhos da tabela
-        let colAnteriorCima = elemento.parentElement.parentElement.childNodes[++colPosteriorY];
-        if (colAnteriorCima !== undefined) {
-            let discoAnteriorCima = colAnteriorCima.childNodes[++linhaXProx]
-            if (discoAnteriorCima !== undefined) {
-                if (discoAnteriorCima.firstChild !== null) {
-                    if (discoAnteriorCima.firstChild.id === idPlayer) {
-                        discoDiagonalEsqCima++;
-                        if (discoDiagonalEsqCima === 3) {
-                            console.log('ganhou', idPlayer)
-                        }
-                    }
-                }
-            }
+//     let discoDiagonalEsqCima = 0;
+//     let colPosteriorY = colunaY;
+//     let linhaXProx = linhaX;
+//     for (let k = 0; k < 3; k++) {
+//         // div com o disco.coluna.tabela.filhos da tabela
+//         let colAnteriorCima = elemento.parentElement.parentElement.childNodes[++colPosteriorY];
+//         if (colAnteriorCima !== undefined) {
+//             let discoAnteriorCima = colAnteriorCima.childNodes[++linhaXProx]
+//             if (discoAnteriorCima !== undefined) {
+//                 if (discoAnteriorCima.firstChild !== null) {
+//                     if (discoAnteriorCima.firstChild.id === idPlayer) {
+//                         discoDiagonalEsqCima++;
+//                         if (discoDiagonalEsqCima === 3) {
+//                             console.log('ganhou', idPlayer)
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+
+    for (let q = 0; q < matriz.length; q++) {//linha
+        let counterDiagEsq = 0;
+        for (let r = 0; r < matriz.length; r++) {//coluna
+            // console.log(matriz[r],'r',[q],'q')
+            console.log('matriz[q+1]', matriz[q+1])
+            // if (matriz[q + 1] !== ) {
+                 if (matriz[q][r] === playerNumber &&
+                    matriz[q + 1][r - 1] === playerNumber)
+                    counterDiagEsq++
+            // }
+           
+        }
+        if (counterDiagEsq >= 3) {
+            console.log(`Jogador ${playerNumber} ganhou!!!`)
+            // return winMessage()
         }
     }
 }
