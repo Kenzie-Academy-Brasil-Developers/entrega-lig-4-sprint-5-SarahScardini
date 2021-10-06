@@ -164,7 +164,7 @@ function insereDisco(evt) {
             }
         }
         contador();
-        if(contPlayer1 + contPlayer2 === 1) {
+        if (contPlayer1 + contPlayer2 === 1) {
             timer = setInterval(() => { cronometro() }, 100);
         }
     }
@@ -190,8 +190,8 @@ let segundos = 0;
 let milisegundos = 0;
 let timer;
 
-// Um pouco fora de sync --- precisa concertar
 const cronometro = () => {
+
     if ((milisegundos += 10) === 100) {
         segundos++;
         milisegundos = 0;
@@ -199,8 +199,9 @@ const cronometro = () => {
         minutos++;
         segundos = 0;
     }
-    // está muito grande a linha, diminuir
-    cronometroBox.innerHTML = `Tempo: 0${minutos}:${segundos > 10 ? segundos : '0' + segundos}:${milisegundos}`;
+
+    cronometroBox.innerHTML = `Tempo: 0${minutos}:${segundos > 10 ? segundos :
+        '0' + segundos}:${milisegundos}`;
 }
 
 const resetaCronometro = () => {
