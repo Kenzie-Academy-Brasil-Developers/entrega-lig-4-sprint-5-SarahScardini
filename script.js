@@ -45,57 +45,103 @@ const validaUltimo = (idPlayer, elemento) => {
         let linhaX  = elemento.dataset.linha;
         let colunaY = elemento.dataset.col;
 
-        
-
         let linhaInteira = document.querySelectorAll(`div[data-linha='${linhaX}']`)
         let colunaInteira = document.querySelectorAll(`div[data-col='${colunaY}']`)
         
-        console.log('coluna parent', colunaInteira.parentElement)
+        // console.log('coluna parent', elemento.parentElement.previousSibling.childNodes[colunaY-1], colunaY)
         
         let contLinha = 0;
         let contCol   = 0;
 
-        let discoAntBaixo = colunaY.previousSibling;
-        console.log(discoAntBaixo);
+       
 
-        console.log('linha inteira', linhaInteira)
-        console.log('coluna inteira', colunaInteira)
+        // console.log('linha inteira', linhaInteira)
+        // console.log('coluna inteira', colunaInteira)
 
-        console.log('linha', linhaX)
-        console.log('coluna', colunaY)
+        // console.log('linha', linhaX)
+        // console.log('coluna', colunaY)
 
         // VITÓRIA LINHA
-        for(let i = 0; i < linhaInteira.length; i++){ 
-            if(linhaInteira[i].firstChild !== null){
-                if (linhaInteira[i].firstChild.id === idPlayer){
-                    contLinha++;
-                        if(contLinha === 4){
-                             console.log('igual linha', i, 'linha venceu')
-                        }
-                } else {
-                    return console.log('não foi sequencia linha')
-                }
-            }
-        }
+        // for(let i = 0; i < linhaInteira.length; i++){ 
+        //     if(linhaInteira[i].firstChild !== null){
+        //         if (linhaInteira[i].firstChild.id === idPlayer){
+        //             contLinha++;
+        //                 if(contLinha === 4){
+        //                      console.log('igual linha', i, 'linha venceu')
+        //                 }
+        //         } else {
+        //             return console.log('não foi sequencia linha')
+        //         }
+        //     }
+        // }
 
         // VITÓRIA COLUNA
-        for (let j = 1; j < colunaInteira.length; j++){
-            if (colunaInteira[j].firstChild !== null ){
-                if(colunaInteira[j].firstChild.id === idPlayer){
-                    contCol++;
-                        if(contCol === 4){
-                             console.log('igual coluna', j, 'coluna venceu')
-                        }
-                } else {
-                    return console.log('não foi sequencia coluna')
-                }
-            }
+        // for (let j = 1; j < colunaInteira.length; j++){
+        //     if (colunaInteira[j].firstChild !== null ){
+        //         if(colunaInteira[j].firstChild.id === idPlayer){
+        //             contCol++;
+        //                 if(contCol === 4){
+        //                      console.log('igual coluna', j, 'coluna venceu')
+        //                 }
+        //         } else {
+        //             return console.log('não foi sequencia coluna')
+        //         }
+        //     }
             
+        // }
+        // console.log(elemento.parentElement)
+        let discoDiagonalEsqBaixo = 0;
+        // VITÓRIA DIAGONAL ESQUERDA BAIXO
+        for (let k = 1; k < 4; k++){
+            // div com o disco.coluna.tabela.filhos da tabela
+            let colAnterior = elemento.parentElement.parentElement.childNodes[colunaY-k];
+            if(colAnterior !== undefined){
+                let discoAnterior = colAnterior.childNodes[++linhaX]
+                if(discoAnterior !== undefined){
+                    if(discoAnterior.firstChild !== null){
+                        if(discoAnterior.firstChild.id === idPlayer){
+                            discoDiagonalEsqBaixo++;
+                            if(discoDiagonalEsqBaixo === 3){
+                                console.log('ganhou', idPlayer)
+                            }
+                           
+                        }
+                        
+                    } 
+                    
+                }
+               
+            }      
+
         }
 
-        //VITÓRIA DIAGONAL
-        for (let k = 0; k < 4; k++){
-            
+        let discoDiagonalEsqCima = 0;
+        for (let k = 1; k < 4; k++){
+            // div com o disco.coluna.tabela.filhos da tabela
+            let colAnteriorCima = elemento.parentElement.parentElement.childNodes[colunaY++];
+            console.log('colunaY', colunaY)
+            // console.log(colAnteriorCima)
+            // console.log(colAnteriorCima)
+            if(colAnteriorCima !== undefined){
+                console.log(colAnteriorCima)
+                let discoAnteriorCima = colAnteriorCima.childNodes[linhaX++]
+                console.log('discoAnteriorCima', discoAnteriorCima)
+                if(discoAnteriorCima !== undefined){
+                    if(discoAnteriorCima.firstChild !== null){
+                        if(discoAnteriorCima.firstChild.id === idPlayer){
+                            discoDiagonalEsqCima++;
+                            if(discoDiagonalEsqCima === 3){
+                                console.log('ganhou', idPlayer)
+                            }
+                           
+                        }
+                        
+                    } 
+                    
+                }
+               
+            }      
+
         }
     
 }
@@ -132,10 +178,19 @@ function insereDisco(evt) {
             disco.setAttribute('class', 'disco')
             disco.setAttribute('id', 'disco__p2')
 
-            let celulaVaga = verifica(evt);    
-            celulaVaga.appendChild(disco);
+            const idP2 = 'disco__p2';
 
+            let celulaVaga = verifica(evt); 
+
+            celulaVaga.appendChild(disco);
             contPlayer2++;
+
+            if (contPlayer2 >= 4){
+
+                //A PARTIR DO MOMENTO QUE TIVER 4 DISCOS VAI SER NECESSÁRIO CHEGAR A CADA
+                // JOGADA
+                validaUltimo(idP2,  celulaVaga)
+            }
             player = !player;   
         break;
         }     
