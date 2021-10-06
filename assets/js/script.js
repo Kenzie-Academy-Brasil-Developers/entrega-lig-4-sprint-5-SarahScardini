@@ -46,6 +46,12 @@ let botaoReset = () => {
 
     matriz = [];
     zeraMatriz();
+
+    contPlayer1 = 0;
+    contPlayer2 = 0;
+    contador();
+
+    resetaCronometro()
 }
 
 let gerarBotao = () => {
@@ -157,9 +163,55 @@ function insereDisco(evt) {
                 break;
             }
         }
+        contador();
+        if (contPlayer1 + contPlayer2 === 1) {
+            timer = setInterval(() => { cronometro() }, 100);
+        }
     }
 }
 
 // const textoVitoria = document.createElement('div');
 // textoVitoria.innerHTML()
 // document.querySelector('.container').appendChild(textoVitoria);
+
+// CONTADOR
+const contador = () => {
+    let contador1 = document.querySelector('.contador__p1');
+    let contador2 = document.querySelector('.contador__p2');
+    contador1.innerHTML = `Movimentos do Jogador <strong>1</strong>: ${contPlayer1}`;
+    contador2.innerHTML = `Movimentos do Jogador <strong>2</strong>: ${contPlayer2}`;
+}
+contador();
+
+// CRONOMETRO
+let cronometroBox = document.querySelector('.cronometro');
+let minutos = 0;
+let segundos = 0;
+let milisegundos = 0;
+let timer;
+
+const cronometro = () => {
+
+    if ((milisegundos += 10) === 100) {
+        segundos++;
+        milisegundos = 0;
+    } if (segundos === 60) {
+        minutos++;
+        segundos = 0;
+    }
+
+    cronometroBox.innerHTML = `Tempo: 0${minutos}:${segundos > 10 ? segundos :
+        '0' + segundos}:${milisegundos}`;
+}
+
+const resetaCronometro = () => {
+    minutos = 0;
+    segundos = 0;
+    milisegundos = 0;
+    clearInterval(timer);
+    cronometroBox.innerHTML = `Tempo: 00:00:00`
+}
+resetaCronometro();
+
+// colocar dentro da winMessage() para pausar o cronometro
+// clearInterval(timer);
