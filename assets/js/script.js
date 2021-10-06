@@ -3,17 +3,14 @@ let player = true;
 let contPlayer1 = 0;
 let contPlayer2 = 0;
 
-const matriz = [];
-const zeraMatriz = () => {
-    for (let i = 0; i < 6; i++) {
-        let row = [];
-        for (let j = 0; j < 7; j++) {
-        row.push(0);
-        }
-        matriz.push(row);
-    }
-}
-zeraMatriz();
+const matriz = [
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+];
 
 // CRIAR A TABELA 6 LINHA X 7 COLUNAS
 const criarTabela = () => {
@@ -43,7 +40,6 @@ criarTabela();
 let botaoReset = () =>{
     const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
     criarTabela();
-    zeraMatriz();
 }
 
 let gerarBotao = () =>{
