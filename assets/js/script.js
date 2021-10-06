@@ -127,74 +127,76 @@ const win = (idPlayer, elemento) => {
         }
     }
 
-    // VERSÃO DO GUSTAVO
-    // VITÓRIA LINHA
-    // for(let i = 0; i < linhaInteira.length; i++){ 
-    //     if(linhaInteira[i].firstChild !== null){
-    //         if (linhaInteira[i].firstChild.id === idPlayer){
-    //             contLinha++;
-    //                 if(contLinha === 4){
-    //                      console.log('igual linha', i, 'linha venceu')
-    //                 }
-    //         } else {
-    //             return console.log('não foi sequencia linha')
-    //         }
-    //     }
-    // }
+    if (contPlayer2 >= 4) {
+        // VERSÃO DO GUSTAVO
+        // VITÓRIA LINHA
+        // for(let i = 0; i < linhaInteira.length; i++){ 
+        //     if(linhaInteira[i].firstChild !== null){
+        //         if (linhaInteira[i].firstChild.id === idPlayer){
+        //             contLinha++;
+        //                 if(contLinha === 4){
+        //                      console.log('igual linha', i, 'linha venceu')
+        //                 }
+        //         } else {
+        //             return console.log('não foi sequencia linha')
+        //         }
+        //     }
+        // }
 
-    // VITÓRIA COLUNA
-    // for (let j = 1; j < colunaInteira.length; j++){
-    //     if (colunaInteira[j].firstChild !== null ){
-    //         if(colunaInteira[j].firstChild.id === idPlayer){
-    //             contCol++;
-    //                 if(contCol === 4){
-    //                      console.log('igual coluna', j, 'coluna venceu')
-    //                 }
-    //         } else {
-    //             return console.log('não foi sequencia coluna')
-    //         }
-    //     }
-    // }
+        // VITÓRIA COLUNA
+        // for (let j = 1; j < colunaInteira.length; j++){
+        //     if (colunaInteira[j].firstChild !== null ){
+        //         if(colunaInteira[j].firstChild.id === idPlayer){
+        //             contCol++;
+        //                 if(contCol === 4){
+        //                      console.log('igual coluna', j, 'coluna venceu')
+        //                 }
+        //         } else {
+        //             return console.log('não foi sequencia coluna')
+        //         }
+        //     }
+        // }
 
-    // VITÓRIA DIAGONAL ESQUERDA BAIXO
-    let discoDiagonalEsqBaixo = 0;
-    for (let k = 1; k < 4; k++) {
-        // div com o disco.coluna.tabela.filhos da tabela
-        let colAnterior = elemento.parentElement.parentElement.childNodes[colunaY - k];
-        if (colAnterior !== undefined) {
-            let discoAnterior = colAnterior.childNodes[++linhaX]
-            if (discoAnterior !== undefined) {
-                if (discoAnterior.firstChild !== null) {
-                    if (discoAnterior.firstChild.id === idPlayer) {
-                        discoDiagonalEsqBaixo++;
-                        if (discoDiagonalEsqBaixo === 3) {
-                            console.log('ganhou', idPlayer)
-                            // return winMessage()
+        // VITÓRIA DIAGONAL ESQUERDA BAIXO
+        let discoDiagonalEsqBaixo = 0;
+        for (let k = 1; k < 4; k++) {
+            // div com o disco.coluna.tabela.filhos da tabela
+            let colAnterior = elemento.parentElement.parentElement.childNodes[colunaY - k];
+            if (colAnterior !== undefined) {
+                let discoAnterior = colAnterior.childNodes[++linhaX]
+                if (discoAnterior !== undefined) {
+                    if (discoAnterior.firstChild !== null) {
+                        if (discoAnterior.firstChild.id === idPlayer) {
+                            discoDiagonalEsqBaixo++;
+                            if (discoDiagonalEsqBaixo === 3) {
+                                console.log('ganhou', idPlayer)
+                                // return winMessage()
+                            }
                         }
                     }
                 }
             }
         }
-    }
 
-    // let discoDiagonalEsqCima = 0;
-    // for (let k = 1; k < 4; k++) {
-    //     // div com o disco.coluna.tabela.filhos da tabela
-    //     let colAnteriorCima = elemento.parentElement.parentElement.childNodes[colunaY++];
-    //     if (colAnteriorCima !== undefined) {
-    //         let discoAnteriorCima = colAnteriorCima.childNodes[linhaX++]
-    //         if (discoAnteriorCima !== undefined) {
-    //             if (discoAnteriorCima.firstChild !== null) {
-    //                 if (discoAnteriorCima.firstChild.id === idPlayer) {
-    //                     discoDiagonalEsqCima++;
-    //                     if (discoDiagonalEsqCima === 3) {
-    //                         console.log('ganhou', idPlayer)
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+        // let discoDiagonalEsqCima = 0;
+        // for (let k = 1; k < 4; k++) {
+        //     // div com o disco.coluna.tabela.filhos da tabela
+        //     let colAnteriorCima = elemento.parentElement.parentElement.childNodes[colunaY++];
+        //     if (colAnteriorCima !== undefined) {
+        //         let discoAnteriorCima = colAnteriorCima.childNodes[linhaX++]
+        //         if (discoAnteriorCima !== undefined) {
+        //             if (discoAnteriorCima.firstChild !== null) {
+        //                 if (discoAnteriorCima.firstChild.id === idPlayer) {
+        //                     discoDiagonalEsqCima++;
+        //                     if (discoDiagonalEsqCima === 3) {
+        //                         console.log('ganhou', idPlayer)
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+    }
 }
 
 // INSERE DISCOS
@@ -213,9 +215,7 @@ function insereDisco(evt) {
                 celulaVaga.appendChild(disco);
                 contPlayer1++;
 
-                if (contPlayer1 >= 4) {
-                    win(idP1, celulaVaga);
-                }
+                win(idP1, celulaVaga);
 
                 player = !player;
                 break;
@@ -229,12 +229,10 @@ function insereDisco(evt) {
 
                 const idP2 = 'disco__p2';
                 celulaVaga.appendChild(disco);
-
-                if (contPlayer2 >= 4) {
-                    win(idP2, celulaVaga);
-                }
-
                 contPlayer2++;
+
+                win(idP2, celulaVaga);
+
                 player = !player;
                 break;
             }
