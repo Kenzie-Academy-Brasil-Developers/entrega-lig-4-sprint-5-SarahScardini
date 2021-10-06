@@ -46,6 +46,10 @@ let botaoReset = () => {
 
     matriz = [];
     zeraMatriz();
+
+    contPlayer1 = 0;
+    contPlayer2 = 0;
+    contador();
 }
 
 let gerarBotao = () => {
@@ -119,8 +123,11 @@ const win = (idPlayer, elemento) => {
     }
 }
 
+let timer;
+
 // INSERE DISCOS
 function insereDisco(evt) {
+    timer = setInterval(() => { cronometro() }, 100);
     let celulaVaga = verifica(evt);
     if (celulaVaga !== undefined) {
 
@@ -157,9 +164,36 @@ function insereDisco(evt) {
                 break;
             }
         }
+        contador();
     }
 }
 
 // const textoVitoria = document.createElement('div');
 // textoVitoria.innerHTML()
 // document.querySelector('.container').appendChild(textoVitoria);
+
+// CONTADOR
+const contador = () => {
+    let contador1 = document.querySelector('.contador__p1');
+    let contador2 = document.querySelector('.contador__p2');
+    contador1.innerHTML = `Movimentos do Jogador 1: ${contPlayer1}`;
+    contador2.innerHTML = `Movimentos do Jogador 2: ${contPlayer2}`;
+}
+contador();
+
+// CRONOMETRO
+let cronometroBox = document.querySelector('.cronometro');
+let minutos = 0;
+let segundos = 0;
+let milisegundos = 0;
+
+const cronometro = () => {
+    if ((milisegundos += 10) === 100) {
+        segundos++;
+        milisegundos = 0;
+    } if (segundos === 60) {
+        minutos++;
+        segundos = 0;
+    }
+    cronometroBox.innerHTML = `Tempo: 0${minutos}:${segundos > 10 ? segundos : '0' + segundos}:${milisegundos}`;
+}
