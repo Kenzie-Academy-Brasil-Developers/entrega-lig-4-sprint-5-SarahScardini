@@ -3,7 +3,7 @@ let player = true;
 let contPlayer1 = 0;
 let contPlayer2 = 0;
 
-const matriz = [
+let matriz = [
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0],
@@ -65,7 +65,11 @@ const verifica = (e) => {
         }
     }
 }
-
+const mensagemVitoria = (vencedor) =>{
+    const textoVitoria = document.createElement('div');
+    textoVitoria.innerText = (`Jogador ${vencedor} ganhou!!!`);
+    document.querySelector('#resultado').appendChild(textoVitoria);
+    }
 
 // FUNÇÃO VENCEDOR
 const win = (idPlayer, elemento) => {
@@ -93,8 +97,7 @@ const win = (idPlayer, elemento) => {
             }
         }
         if (counterRow === 3) {
-            console.log(`Jogador ${playerNumber} ganhou!!!`)
-            // return winMessage()
+             return mensagemVitoria(playerNumber);
         }
     }
 
@@ -108,8 +111,7 @@ const win = (idPlayer, elemento) => {
         }
     }
     if (counterCol === 3) {
-        console.log(`Jogador ${playerNumber} ganhou!!!`)
-        // return winMessage()
+       return mensagemVitoria(playerNumber);
     }
 }
 
@@ -153,7 +155,3 @@ function insereDisco(evt) {
         }
     }
 }
-
-const textoVitoria = document.createElement('div');
-textoVitoria.innerHTML()
-document.querySelector('.container').appendChild(textoVitoria);
