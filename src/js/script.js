@@ -154,6 +154,8 @@ const win = (idPlayer, elemento) => {
              }
         }
     }
+  
+    ////VERSÃO OTÁVIO
     // Diag direita cima/esquerda baixo
     // for (let a = 3; a < matriz.length; a++){
     //     for (let b = 3;b <= matriz.length; b++){
@@ -165,6 +167,8 @@ const win = (idPlayer, elemento) => {
     //         }
     //     }
     // }
+  
+    ////VERSÃO GUSTAVO
     // // VITÓRIA LINHA
     // for (let i = 0; i < linhaInteira.length; i++) {
     //     if (linhaInteira[i].firstChild !== null) {
@@ -207,8 +211,8 @@ const win = (idPlayer, elemento) => {
     //             if (discoAnterior.firstChild !== null) {
     //                 if (discoAnterior.firstChild.id === idPlayer) {
     //                     discoDiagonalEsqBaixo++;
-    //                     if (discoDiagonalEsqBaixo >= 3) {
-    //                         return mensagemVitoria(playerNumber);
+    //                     if (discoDiagonalEsqBaixo === 3) {
+    //                         console.log('ganhou', idPlayer)
     //                     }
     //                 }
     //             }
@@ -218,25 +222,44 @@ const win = (idPlayer, elemento) => {
 
     // VITÓRIA DIAGONAL ESQUERDA CIMA
     // let discoDiagonalEsqCima = 0;
-    // let colPosteriorY = colunaY;
-    // let linhaXProx = linhaX;
-    // for (let k = 0; k < 3; k++) {
-    //     // div com o disco.coluna.tabela.filhos da tabela
-    //     let colAnteriorCima = elemento.parentElement.parentElement.childNodes[++colPosteriorY];
-    //     if (colAnteriorCima !== undefined) {
-    //         let discoAnteriorCima = colAnteriorCima.childNodes[++linhaXProx]
-    //         if (discoAnteriorCima !== undefined) {
-    //             if (discoAnteriorCima.firstChild !== null) {
-    //                 if (discoAnteriorCima.firstChild.id === idPlayer) {
-    //                     discoDiagonalEsqCima++;
-    //                     if (discoDiagonalEsqCima >= 3) {
-    //                         return mensagemVitoria(playerNumber);
+    //  let colPosteriorY = colunaY;
+    //     let linhaXProx = linhaX;
+    //     for (let k = 0; k < 3; k++) {
+    //         // div com o disco.coluna.tabela.filhos da tabela
+    //         let colAnteriorCima = elemento.parentElement.parentElement.childNodes[++colPosteriorY];
+    //         if (colAnteriorCima !== undefined) {
+    //             let discoAnteriorCima = colAnteriorCima.childNodes[++linhaXProx]
+    //             if (discoAnteriorCima !== undefined) {
+    //                 if (discoAnteriorCima.firstChild !== null) {
+    //                     if (discoAnteriorCima.firstChild.id === idPlayer) {
+    //                         discoDiagonalEsqCima++;
+    //                         if (discoDiagonalEsqCima === 3) {
+    //                             console.log('ganhou', idPlayer)
+    //                         }
     //                     }
     //                 }
     //             }
     //         }
     //     }
-    // }
+
+    let counterDiagEsq = 0;
+    for (let q = 0; q < matriz.length - 1; q++) {//linha       
+        console.log('matriz[q+1]', matriz[q+1])
+        for (let r = 0; r < matriz.length + 1; r++) {//coluna       
+                     
+                 if (matriz[q][r] === playerNumber &&
+                    matriz[q][r] === matriz[q + 1][r - 1]){
+                          counterDiagEsq++;
+                          console.log('counterDiagEsq', counterDiagEsq);
+                          console.log('matriz[q + 1][r - 1]', matriz[q + 1][r - 1])
+                  }
+        }
+        if (counterDiagEsq >= 3) {
+            console.log(`Jogador ${playerNumber} ganhou!!!`)
+            // return winMessage()
+        }
+    }
+  
     empate()
 }
 
