@@ -143,6 +143,28 @@ const win = (idPlayer, elemento) => {
         }
     }
 
+    // Diag direita baixo/esquerda cima
+    for (let a = 0; a < matriz.length - 3; a++){
+        for (let b = 0;b <= matriz.length - 3; b++){
+            if (matriz[a][b] === playerNumber &&
+                matriz[a + 1][b + 1] === playerNumber &&
+                matriz[a + 2][b + 2] === playerNumber &&
+                matriz[a + 3][b + 3] === playerNumber){
+                return mensagemVitoria(playerNumber);
+             }
+        }
+    }
+    // Diag direita cima/esquerda baixo
+    // for (let a = 3; a < matriz.length; a++){
+    //     for (let b = 3;b <= matriz.length; b++){
+    //         if (matriz[a][b] === playerNumber &&
+    //             matriz[a - 1][b + 1] === playerNumber &&
+    //             matriz[a - 2][b + 2] === playerNumber &&
+    //             matriz[a - 3][b + 3] === playerNumber){
+    //             return mensagemVitoria(playerNumber);
+    //         }
+    //     }
+    // }
     // // VITÓRIA LINHA
     // for (let i = 0; i < linhaInteira.length; i++) {
     //     if (linhaInteira[i].firstChild !== null) {
@@ -171,50 +193,50 @@ const win = (idPlayer, elemento) => {
     //     }
     // }
 
-    let discoDiagonalEsqBaixo = 0;
-    let colAnteriorY = colunaY;
-    let linhaXAnt = linhaX;
+    // let discoDiagonalEsqBaixo = 0;
+    // let colAnteriorY = colunaY;
+    // let linhaXAnt = linhaX;
 
     // VITÓRIA DIAGONAL ESQUERDA BAIXO
-    for (let k = 1; k < 4; k++) {
-        // div com o disco.coluna.tabela.filhos da tabela
-        let colAnterior = elemento.parentElement.parentElement.childNodes[--colAnteriorY];
-        if (colAnterior !== undefined) {
-            let discoAnterior = colAnterior.childNodes[++linhaXAnt]
-            if (discoAnterior !== undefined) {
-                if (discoAnterior.firstChild !== null) {
-                    if (discoAnterior.firstChild.id === idPlayer) {
-                        discoDiagonalEsqBaixo++;
-                        if (discoDiagonalEsqBaixo >= 3) {
-                            return mensagemVitoria(playerNumber);
-                        }
-                    }
-                }
-            }
-        }
-    }
+    // for (let k = 1; k < 4; k++) {
+    //     // div com o disco.coluna.tabela.filhos da tabela
+    //     let colAnterior = elemento.parentElement.parentElement.childNodes[--colAnteriorY];
+    //     if (colAnterior !== undefined) {
+    //         let discoAnterior = colAnterior.childNodes[++linhaXAnt]
+    //         if (discoAnterior !== undefined) {
+    //             if (discoAnterior.firstChild !== null) {
+    //                 if (discoAnterior.firstChild.id === idPlayer) {
+    //                     discoDiagonalEsqBaixo++;
+    //                     if (discoDiagonalEsqBaixo >= 3) {
+    //                         return mensagemVitoria(playerNumber);
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     // VITÓRIA DIAGONAL ESQUERDA CIMA
-    let discoDiagonalEsqCima = 0;
-    let colPosteriorY = colunaY;
-    let linhaXProx = linhaX;
-    for (let k = 0; k < 3; k++) {
-        // div com o disco.coluna.tabela.filhos da tabela
-        let colAnteriorCima = elemento.parentElement.parentElement.childNodes[++colPosteriorY];
-        if (colAnteriorCima !== undefined) {
-            let discoAnteriorCima = colAnteriorCima.childNodes[++linhaXProx]
-            if (discoAnteriorCima !== undefined) {
-                if (discoAnteriorCima.firstChild !== null) {
-                    if (discoAnteriorCima.firstChild.id === idPlayer) {
-                        discoDiagonalEsqCima++;
-                        if (discoDiagonalEsqCima >= 3) {
-                            return mensagemVitoria(playerNumber);
-                        }
-                    }
-                }
-            }
-        }
-    }
+    // let discoDiagonalEsqCima = 0;
+    // let colPosteriorY = colunaY;
+    // let linhaXProx = linhaX;
+    // for (let k = 0; k < 3; k++) {
+    //     // div com o disco.coluna.tabela.filhos da tabela
+    //     let colAnteriorCima = elemento.parentElement.parentElement.childNodes[++colPosteriorY];
+    //     if (colAnteriorCima !== undefined) {
+    //         let discoAnteriorCima = colAnteriorCima.childNodes[++linhaXProx]
+    //         if (discoAnteriorCima !== undefined) {
+    //             if (discoAnteriorCima.firstChild !== null) {
+    //                 if (discoAnteriorCima.firstChild.id === idPlayer) {
+    //                     discoDiagonalEsqCima++;
+    //                     if (discoDiagonalEsqCima >= 3) {
+    //                         return mensagemVitoria(playerNumber);
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
     empate()
 }
 
