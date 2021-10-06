@@ -9,26 +9,29 @@
 
 #titulo{   
     text-align: center;
-    font-size:40px;
+    color: rgb(255, 255, 0);
+    letter-spacing: 5px;
+    font-size:60px;
+    font-family: 'Bangers', cursive;
 }
 .colunas{
     flex-direction: column-reverse;
     width: 100%;
     height: 262px;
-    background-color:rgb(42, 139, 230)  ;
+    background-color:rgb(42, 139, 230, .5)  ;
 }
 
 .caixas{
     height: 43px;
     width: 43px;
-    background-color: white;
+    background-color: rgb(255, 255, 255, .1);
     border-radius: 50%;
-    border: 1px solid rgb(42, 139, 230);
+    border: 2px solid rgb(42, 139, 230, .5);
 }
 
 #tabela{
     display: flex;
-    border: 4px solid black;
+    border: 4px solid rgb(0, 0, 0, .3);
     /* width: 350px; */
     width: 315px;
     height: 270px;
@@ -36,8 +39,8 @@
 }
 
 .disco {
-    width: 43px;
-    height: 43px;
+    width: 41px;
+    height: 41px;
     border-radius: 50%;
     background-color: black;
     position: absolute;
@@ -46,17 +49,19 @@
 } 
 
 #disco__p1 {
-    background-color:red;
+    background-color:rgb(255, 0, 0);
 }
 
 #disco__p2 {
-    background-color:yellow;
+    background-color:rgb(163, 215, 229);
 }
 .reset{
     margin-top: 30px;
-    border-radius: 2%;
-    font-size: 20px;
-    
+    padding: 15px;
+    border: 2px solid ;
+    background-color: rgb(255, 255, 255, .5);
+    font-size: 30px;
+    font-family: 'Bangers', cursive;
 }
 .container{
     display: flex;
@@ -78,13 +83,13 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
-    margin-block: 10px;
 }
-.contadorCaixa, .cronometro{
-    border: 1px solid black;
+.contadorCaixa, .cronometro, .placar {
+   
+    border: 2px solid grey;
     height: 75px;
-    padding: 8px;
-    margin: 5px;
+    padding: 8px 0 0 4px;
+    background-color: rgb(255, 255, 255, .5);
 }
 .contadorCaixa{
     line-height: 1.75rem;
@@ -97,35 +102,88 @@
     display: inherit;
     width: 150px;
 }
-
+.contador-cronometro__caixa{
+    width: 315px;
+    height: 100px;
+    display: flex;
+}
+.contadorCaixa{
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: 600;
+    width: 200px;
+}
+.cronometro{
+    font-size: 13px;
+    font-weight: 600;
+    padding-left: 20px;
+}
+.placar{
+    font-size: 13px;
+    padding-top: 15px;
+    width: 150px;
+    font-weight: 600;
+}
+.placar p{
+    text-align: center;
+    align-items: center;
+}
+body{
+    background-image: url("/src/assets/img/spacebackground.jpeg");
+    background-size: 100%;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main .container { order: 3; }
 @media (min-width:700px){
     #titulo{
         /* text-align: start; */
+        font-size: 50px;
         margin: 0 0;
     }
     .colunas{
-        height: 532px;
+        height: 412px;
     }
     #tabela{
-        width: 629px;
-        height: 540px; ;
+        width: 490px;
+        height: 420px; ;
     }
     .caixas{
-        height: 88px;
-        width: 88px;
-        border: 2px solid rgb(42, 139, 230);
-    }
-    .reset{
-        margin-top: 2px;
+        height: 68px;
+        width: 68px;
+        border: 4px solid rgb(42, 139, 230);
     }
     .disco{
-        width: 86px;
-        height: 86px;
+        width: 62px;
+        height: 62px;
     }
     .reset{
-        font-size: 40px;
+        margin-top: 10px;
+        font-size: 20px;
+        padding:5px;
+
     }
     #resultado{
         top: 50%;
+    }
+    .contador-cronometro__caixa{
+        width: 490px;
+    }
+    .placar div{
+        text-align: center;
+        margin-top: 5px;
+    }
+    .cronometro{
+        text-align: center;
+    }
+    .contadorCaixa{
+        text-align: center;
+        padding-top: 20px;
+    }
+    .contadorCaixa div{
+        line-height: 20px;
     }
 }
