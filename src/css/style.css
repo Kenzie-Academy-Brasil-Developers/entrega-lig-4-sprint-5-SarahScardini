@@ -63,6 +63,32 @@
     font-size: 20px;
 }
 
+.contador-cronometro__caixa{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-block: 10px;
+}
+.contadorCaixa, .cronometro{
+    border: 1px solid black;
+    height: 75px;
+    padding: 8px;
+    margin: 5px;
+}
+.contadorCaixa{
+    line-height: 1.75rem;
+    width: 230px;
+}
+/* .contador__p1{}
+.contador__p2{} */
+.cronometro{
+    align-items: center;
+    display: inherit;
+    width: 150px;
+}
+
 @media (min-width:700px){
     #titulo{
         /* text-align: start; */
