@@ -1,3 +1,12 @@
+:root{
+    --black: black;
+    --blue: #2a318b;
+    --dark-blue: #240c60;
+    --red: 	#b6131b;
+    --dark-red: #71192d;
+    --yellow: #ecd300;
+}
+
 #titulo{   
     text-align: center;
     font-size:40px;

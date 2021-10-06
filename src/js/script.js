@@ -22,7 +22,6 @@ const criarTabela = () => {
         const divColuna = document.createElement('div');
         divColuna.setAttribute('class', 'colunas');
         divColuna.setAttribute('data-col', i);
-
         divColuna.addEventListener('click', insereDisco);
 
         for (let j = 0; j < 6; j++) {
@@ -30,9 +29,7 @@ const criarTabela = () => {
             divLinha.setAttribute('class', 'caixas');
             divLinha.setAttribute('data-linha', j);
             divLinha.setAttribute('data-col', i);
-
             divColuna.appendChild(divLinha);
-
         }
         tabela.appendChild(divColuna);
     }
@@ -66,17 +63,13 @@ const empate = () => {
 let botaoReset = () => {
     const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
     criarTabela();
-
     textoVitoria.innerText = '';
-
     matriz = [];
     zeraMatriz();
-
     contPlayer1 = 0;
     contPlayer2 = 0;
     contador();
-
-    resetaCronometro()
+    resetaCronometro();
 }
 
 let gerarBotao = () => {
@@ -103,18 +96,10 @@ const verifica = (e) => {
     }
 }
 
-
 // FUNÇÃO VENCEDOR
 const win = (idPlayer, elemento) => {
     let linhaX = elemento.dataset.linha;
     let colunaY = elemento.dataset.col;
-
-    let linhaInteira = document.querySelectorAll(`div[data-linha='${linhaX}']`);
-    let colunaInteira = document.querySelectorAll(`div[data-col='${colunaY}']`);
-
-    let contLinha = 0;
-    let contCol = 0;
-
     let playerNumber = 1;
 
     if (idPlayer === 'disco__p2') {
@@ -126,12 +111,11 @@ const win = (idPlayer, elemento) => {
     // CONFERE POR LINHA
     for (let k = 0; k < matriz.length; k++) {
         for (let l = 0; l < matriz[k].length - 3; l++) {
-            if (matriz[k][l] === playerNumber) {
-                if (matriz[k][l] === matriz[k][l + 1] &&
-                    matriz[k][l + 1] === matriz[k][l + 2] &&
-                    matriz[k][l + 2] === matriz[k][l + 3]) {
-                    return mensagemVitoria(playerNumber);
-                }
+            if (matriz[k][l] === playerNumber &&
+                matriz[k][l] === matriz[k][l + 1] &&
+                matriz[k][l + 1] === matriz[k][l + 2] &&
+                matriz[k][l + 2] === matriz[k][l + 3]) {
+                return mensagemVitoria(playerNumber);
             }
         }
     }
@@ -139,17 +123,16 @@ const win = (idPlayer, elemento) => {
     // CONFERE POR COLUNA
     for (let m = 0; m < matriz.length + 1; m++) {
         for (let n = 0; n < matriz.length - 3; n++) {
-            if (matriz[n][m] === playerNumber) {
-                if (matriz[n][m] === matriz[n + 1][m] &&
-                    matriz[n + 1][m] === matriz[n + 2][m] &&
-                    matriz[n + 2][m] === matriz[n + 3][m]) {
-                    return mensagemVitoria(playerNumber);
-                }
+            if (matriz[n][m] === playerNumber &&
+                matriz[n][m] === matriz[n + 1][m] &&
+                matriz[n + 1][m] === matriz[n + 2][m] &&
+                matriz[n + 2][m] === matriz[n + 3][m]) {
+                return mensagemVitoria(playerNumber);
             }
         }
     }
 
-    // DIAGONAL DIREITA BAIXO/ESQUERDA CIMA
+    // DIAGONAL DIREITA
     for (let a = 0; a < matriz.length - 3; a++) {
         for (let b = 0; b <= matriz.length - 3; b++) {
             if (matriz[a][b] === playerNumber &&
@@ -161,113 +144,20 @@ const win = (idPlayer, elemento) => {
         }
     }
 
-     // Diag esquerda
-     for (let q = 0; q < matriz.length - 3; q++) {//linha       
+    // DIAGONAL ESQUERDA
+    for (let q = 0; q < matriz.length - 3; q++) {//linha       
         for (let r = 0; r <= matriz.length; r++) {//coluna 
-            if (matriz[q][r] === playerNumber && 
+            if (matriz[q][r] === playerNumber &&
                 matriz[q + 1][r - 1] === playerNumber &&
                 matriz[q + 2][r - 2] === playerNumber &&
-                matriz[q + 3][r - 3] === playerNumber){
-                    console.log(`Jogador ${playerNumber} ganhou!!!`)
-                    // return winMessage()
-    
-                 }
+                matriz[q + 3][r - 3] === playerNumber) {
+                return mensagemVitoria(playerNumber);
             }
-                
-     }  
-  
-    ////VERSÃO OTÁVIO
-    // Diag direita cima/esquerda baixo
-    // for (let a = 3; a < matriz.length; a++){
-    //     for (let b = 3;b <= matriz.length; b++){
-    //         if (matriz[a][b] === playerNumber &&
-    //             matriz[a - 1][b + 1] === playerNumber &&
-    //             matriz[a - 2][b + 2] === playerNumber &&
-    //             matriz[a - 3][b + 3] === playerNumber){
-    //             return mensagemVitoria(playerNumber);
-    //         }
-    //     }
-    // }
+        }
 
-    ////VERSÃO GUSTAVO
-    // // VITÓRIA LINHA
-    // for (let i = 0; i < linhaInteira.length; i++) {
-    //     if (linhaInteira[i].firstChild !== null) {
-    //         if (linhaInteira[i].firstChild.id === idPlayer) {
-    //             contLinha++;
-    //             if (contLinha === 4) {
-    //                 console.log('igual linha', i, 'linha venceu')
-    //             }
-    //         } else {
-    //             console.log('não foi sequencia linha')
-    //         }
-    //     }
-    // }
-
-    // // VITÓRIA COLUNA
-    // for (let j = 1; j < colunaInteira.length; j++) {
-    //     if (colunaInteira[j].firstChild !== null) {
-    //         if (colunaInteira[j].firstChild.id === idPlayer) {
-    //             contCol++;
-    //             if (contCol === 4) {
-    //                 console.log('igual coluna', j, 'coluna venceu')
-    //             }
-    //         } else {
-    //             console.log('não foi sequencia coluna')
-    //         }
-    //     }
-    // }
-
-//     let discoDiagonalEsqBaixo = 0;
-//     let colAnteriorY = colunaY;
-//     let linhaXAnt = linhaX;
-
-//     // VITÓRIA DIAGONAL ESQUERDA BAIXO
-//     for (let k = 1; k < 4; k++) {
-//         // div com o disco.coluna.tabela.filhos da tabela
-//         let colAnterior = elemento.parentElement.parentElement.childNodes[--colAnteriorY];
-//         if (colAnterior !== undefined) {
-//             let discoAnterior = colAnterior.childNodes[++linhaXAnt]
-//             if (discoAnterior !== undefined) {
-//                 if (discoAnterior.firstChild !== null) {
-//                     if (discoAnterior.firstChild.id === idPlayer) {
-//                         discoDiagonalEsqBaixo++;
-//                         if (discoDiagonalEsqBaixo === 3) {
-//                             // console.log('ganhou', idPlayer)
-//                             return mensagemVitoria(playerNumber);
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-
-    // VITÓRIA DIAGONAL DIREITA
-    // let discoDiagonalEsqCima = 0;
-    //  let colPosteriorY = colunaY;
-    //     let linhaXProx = linhaX;
-    //     for (let k = 0; k < 3; k++) {
-    //         // div com o disco.coluna.tabela.filhos da tabela
-    //         let colAnteriorCima = elemento.parentElement.parentElement.childNodes[++colPosteriorY];
-    //         if (colAnteriorCima !== undefined) {
-    //             let discoAnteriorCima = colAnteriorCima.childNodes[++linhaXProx]
-    //             if (discoAnteriorCima !== undefined) {
-    //                 if (discoAnteriorCima.firstChild !== null) {
-    //                     if (discoAnteriorCima.firstChild.id === idPlayer) {
-    //                         discoDiagonalEsqCima++;
-    //                         if (discoDiagonalEsqCima === 3) {
-    //                             console.log('ganhou', idPlayer)
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-
+    }
     empate()
 }
-  
-
 
 // INSERE DISCOS
 function insereDisco(evt) {
@@ -278,8 +168,8 @@ function insereDisco(evt) {
             case true: {
                 //player1
                 const disco = document.createElement('div');
-                disco.setAttribute('class', 'disco')
-                disco.setAttribute('id', 'disco__p1')
+                disco.setAttribute('class', 'disco');
+                disco.setAttribute('id', 'disco__p1');
 
                 const idP1 = 'disco__p1';
                 celulaVaga.appendChild(disco);
@@ -313,7 +203,6 @@ function insereDisco(evt) {
         }
     }
 }
-
 
 // CONTADOR
 const contador = () => {
