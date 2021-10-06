@@ -127,75 +127,77 @@ const win = (idPlayer, elemento) => {
         }
     }
 
-    if (contPlayer2 >= 4) {
-        // VERSÃO DO GUSTAVO
-        // VITÓRIA LINHA
-        // for(let i = 0; i < linhaInteira.length; i++){ 
-        //     if(linhaInteira[i].firstChild !== null){
-        //         if (linhaInteira[i].firstChild.id === idPlayer){
-        //             contLinha++;
-        //                 if(contLinha === 4){
-        //                      console.log('igual linha', i, 'linha venceu')
-        //                 }
-        //         } else {
-        //             return console.log('não foi sequencia linha')
-        //         }
-        //     }
-        // }
+    // // VITÓRIA LINHA
+    // for (let i = 0; i < linhaInteira.length; i++) {
+    //     if (linhaInteira[i].firstChild !== null) {
+    //         if (linhaInteira[i].firstChild.id === idPlayer) {
+    //             contLinha++;
+    //             if (contLinha === 4) {
+    //                 console.log('igual linha', i, 'linha venceu')
+    //             }
+    //         } else {
+    //             console.log('não foi sequencia linha')
+    //         }
+    //     }
+    // }
 
-        // VITÓRIA COLUNA
-        // for (let j = 1; j < colunaInteira.length; j++){
-        //     if (colunaInteira[j].firstChild !== null ){
-        //         if(colunaInteira[j].firstChild.id === idPlayer){
-        //             contCol++;
-        //                 if(contCol === 4){
-        //                      console.log('igual coluna', j, 'coluna venceu')
-        //                 }
-        //         } else {
-        //             return console.log('não foi sequencia coluna')
-        //         }
-        //     }
-        // }
+    // // VITÓRIA COLUNA
+    // for (let j = 1; j < colunaInteira.length; j++) {
+    //     if (colunaInteira[j].firstChild !== null) {
+    //         if (colunaInteira[j].firstChild.id === idPlayer) {
+    //             contCol++;
+    //             if (contCol === 4) {
+    //                 console.log('igual coluna', j, 'coluna venceu')
+    //             }
+    //         } else {
+    //             console.log('não foi sequencia coluna')
+    //         }
+    //     }
+    // }
 
-        // VITÓRIA DIAGONAL ESQUERDA BAIXO
-        let discoDiagonalEsqBaixo = 0;
-        for (let k = 1; k < 4; k++) {
-            // div com o disco.coluna.tabela.filhos da tabela
-            let colAnterior = elemento.parentElement.parentElement.childNodes[colunaY - k];
-            if (colAnterior !== undefined) {
-                let discoAnterior = colAnterior.childNodes[++linhaX]
-                if (discoAnterior !== undefined) {
-                    if (discoAnterior.firstChild !== null) {
-                        if (discoAnterior.firstChild.id === idPlayer) {
-                            discoDiagonalEsqBaixo++;
-                            if (discoDiagonalEsqBaixo === 3) {
-                                console.log('ganhou', idPlayer)
-                                // return winMessage()
-                            }
+    let discoDiagonalEsqBaixo = 0;
+    let colAnteriorY = colunaY;
+    let linhaXAnt = linhaX;
+
+    // VITÓRIA DIAGONAL ESQUERDA BAIXO
+    for (let k = 1; k < 4; k++) {
+        // div com o disco.coluna.tabela.filhos da tabela
+        let colAnterior = elemento.parentElement.parentElement.childNodes[--colAnteriorY];
+        if (colAnterior !== undefined) {
+            let discoAnterior = colAnterior.childNodes[++linhaXAnt]
+            if (discoAnterior !== undefined) {
+                if (discoAnterior.firstChild !== null) {
+                    if (discoAnterior.firstChild.id === idPlayer) {
+                        discoDiagonalEsqBaixo++;
+                        if (discoDiagonalEsqBaixo === 3) {
+                            console.log('ganhou', idPlayer)
                         }
                     }
                 }
             }
         }
+    }
 
-        // let discoDiagonalEsqCima = 0;
-        // for (let k = 1; k < 4; k++) {
-        //     // div com o disco.coluna.tabela.filhos da tabela
-        //     let colAnteriorCima = elemento.parentElement.parentElement.childNodes[colunaY++];
-        //     if (colAnteriorCima !== undefined) {
-        //         let discoAnteriorCima = colAnteriorCima.childNodes[linhaX++]
-        //         if (discoAnteriorCima !== undefined) {
-        //             if (discoAnteriorCima.firstChild !== null) {
-        //                 if (discoAnteriorCima.firstChild.id === idPlayer) {
-        //                     discoDiagonalEsqCima++;
-        //                     if (discoDiagonalEsqCima === 3) {
-        //                         console.log('ganhou', idPlayer)
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+    // VITÓRIA DIAGONAL ESQUERDA CIMA
+    let discoDiagonalEsqCima = 0;
+    let colPosteriorY = colunaY;
+    let linhaXProx = linhaX;
+    for (let k = 0; k < 3; k++) {
+        // div com o disco.coluna.tabela.filhos da tabela
+        let colAnteriorCima = elemento.parentElement.parentElement.childNodes[++colPosteriorY];
+        if (colAnteriorCima !== undefined) {
+            let discoAnteriorCima = colAnteriorCima.childNodes[++linhaXProx]
+            if (discoAnteriorCima !== undefined) {
+                if (discoAnteriorCima.firstChild !== null) {
+                    if (discoAnteriorCima.firstChild.id === idPlayer) {
+                        discoDiagonalEsqCima++;
+                        if (discoDiagonalEsqCima === 3) {
+                            console.log('ganhou', idPlayer)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
