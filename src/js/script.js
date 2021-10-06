@@ -50,7 +50,7 @@ const mensagemVitoria = (vencedor) => {
 // EMPATE
 const empate = () => {
     let matrizStr = matriz.toString().includes('0');
-    if (!matrizStr){
+    if (!matrizStr) {
         textoVitoria.innerHTML = `Empate!`;
         clearInterval(timer);
     }
@@ -119,28 +119,27 @@ const win = (idPlayer, elemento) => {
 
     // CONFERE POR LINHA
     for (let k = 0; k < matriz.length; k++) {
-        let counterRow = 0;
-        for (let l = 0; l < matriz[k].length - 1; l++) {
-            if (matriz[k][l] === playerNumber &&
-                matriz[k][l] === matriz[k][l + 1]) {
-                counterRow++
+        for (let l = 0; l < matriz[k].length - 3; l++) {
+            if (matriz[k][l] === playerNumber) {
+                if (matriz[k][l] === matriz[k][l + 1] &&
+                    matriz[k][l + 1] === matriz[k][l + 2] &&
+                    matriz[k][l + 2] === matriz[k][l + 3]) {
+                    return mensagemVitoria(playerNumber);
+                }
             }
-        }
-        if (counterRow >= 3) {
-            return mensagemVitoria(playerNumber);
         }
     }
 
     // CONFERE POR COLUNA
     for (let m = 0; m < matriz.length + 1; m++) {
-        let counterCol = 0;
-        for (let n = 0; n < matriz.length - 1; n++) {
-            if (matriz[n][m] === playerNumber &&
-                matriz[n][m] === matriz[n + 1][m])
-                counterCol++
-        }
-        if (counterCol >= 3) {
-            return mensagemVitoria(playerNumber);
+        for (let n = 0; n < matriz.length - 3; n++) {
+            if (matriz[n][m] === playerNumber) {
+                if (matriz[n][m] === matriz[n + 1][m] &&
+                    matriz[n + 1][m] === matriz[n + 2][m] &&
+                    matriz[n + 2][m] === matriz[n + 3][m]) {
+                    return mensagemVitoria(playerNumber);
+                }
+            }
         }
     }
 
