@@ -3,12 +3,12 @@ let player = true;
 let contPlayer1 = 0;
 let contPlayer2 = 0;
 
-const matriz = [];
+let matriz = [];
 const zeraMatriz = () => {
     for (let i = 0; i < 6; i++) {
         let row = [];
         for (let j = 0; j < 7; j++) {
-        row.push(0);
+            row.push(0);
         }
         matriz.push(row);
     }
@@ -40,16 +40,18 @@ const criarTabela = () => {
 criarTabela();
 
 // RESET
-let botaoReset = () =>{
+let botaoReset = () => {
     const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
     criarTabela();
+
+    matriz = [];
     zeraMatriz();
 }
 
-let gerarBotao = () =>{
+let gerarBotao = () => {
     const botao = document.createElement('button');
     botao.innerText = 'Reset';
-    botao.setAttribute('class','reset');
+    botao.setAttribute('class', 'reset');
     document.querySelector('.container').appendChild(botao);
     const reset = document.querySelector('.reset');
     reset.onclick = botaoReset;
@@ -105,7 +107,7 @@ const win = (idPlayer, elemento) => {
     // CONFERE POR COLUNA
     for (let m = 0; m < matriz.length; m++) {
         let counterCol = 0;
-        for (let n = 0; n < matriz.length-1; n++) {
+        for (let n = 0; n < matriz.length - 1; n++) {
             if (matriz[n][m] === playerNumber &&
                 matriz[n][m] === matriz[n + 1][m])
                 counterCol++
