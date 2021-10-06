@@ -241,7 +241,7 @@ function insereDisco(evt) {
         }
         contador();
         if (contPlayer1 + contPlayer2 === 1) {
-            timer = setInterval(() => { cronometro() }, 100);
+            timer = setInterval(() => { cronometro() }, 10);
         }
     }
 }
@@ -267,7 +267,7 @@ let milisegundos = 0;
 let timer;
 
 const cronometro = () => {
-    if ((milisegundos += 10) === 100) {
+    if ((milisegundos += 10) === 1000) {
         segundos++;
         milisegundos = 0;
     } if (segundos === 60) {
