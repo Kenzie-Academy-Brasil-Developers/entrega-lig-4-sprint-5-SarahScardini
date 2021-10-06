@@ -50,6 +50,8 @@ let botaoReset = () => {
     contPlayer1 = 0;
     contPlayer2 = 0;
     contador();
+
+    resetaCronometro()
 }
 
 let gerarBotao = () => {
@@ -123,11 +125,8 @@ const win = (idPlayer, elemento) => {
     }
 }
 
-let timer;
-
 // INSERE DISCOS
 function insereDisco(evt) {
-    timer = setInterval(() => { cronometro() }, 100);
     let celulaVaga = verifica(evt);
     if (celulaVaga !== undefined) {
 
@@ -165,6 +164,9 @@ function insereDisco(evt) {
             }
         }
         contador();
+        if(contPlayer1 + contPlayer2 === 1) {
+            timer = setInterval(() => { cronometro() }, 100);
+        }
     }
 }
 
@@ -176,8 +178,8 @@ function insereDisco(evt) {
 const contador = () => {
     let contador1 = document.querySelector('.contador__p1');
     let contador2 = document.querySelector('.contador__p2');
-    contador1.innerHTML = `Movimentos do Jogador 1: ${contPlayer1}`;
-    contador2.innerHTML = `Movimentos do Jogador 2: ${contPlayer2}`;
+    contador1.innerHTML = `Movimentos do Jogador <strong>1</strong>: ${contPlayer1}`;
+    contador2.innerHTML = `Movimentos do Jogador <strong>2</strong>: ${contPlayer2}`;
 }
 contador();
 
@@ -186,7 +188,9 @@ let cronometroBox = document.querySelector('.cronometro');
 let minutos = 0;
 let segundos = 0;
 let milisegundos = 0;
+let timer;
 
+// Um pouco fora de sync --- precisa concertar
 const cronometro = () => {
     if ((milisegundos += 10) === 100) {
         segundos++;
@@ -195,5 +199,18 @@ const cronometro = () => {
         minutos++;
         segundos = 0;
     }
+    // está muito grande a linha, diminuir
     cronometroBox.innerHTML = `Tempo: 0${minutos}:${segundos > 10 ? segundos : '0' + segundos}:${milisegundos}`;
 }
+
+const resetaCronometro = () => {
+    minutos = 0;
+    segundos = 0;
+    milisegundos = 0;
+    clearInterval(timer);
+    cronometroBox.innerHTML = `Tempo: 00:00:00`
+}
+resetaCronometro();
+
+// colocar dentro da winMessage() para pausar o cronometro
+// clearInterval(timer);
