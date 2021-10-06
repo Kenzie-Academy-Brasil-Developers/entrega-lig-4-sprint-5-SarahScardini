@@ -47,6 +47,15 @@ const mensagemVitoria = (vencedor) => {
     document.querySelector('#resultado').appendChild(textoVitoria);
 }
 
+// EMPATE
+const empate = () => {
+    let matrizStr = matriz.toString().includes('0');
+    if (!matrizStr){
+        textoVitoria.innerHTML = `Empate!`;
+        clearInterval(timer);
+    }
+}
+
 // RESET
 let botaoReset = () => {
     const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
@@ -207,6 +216,7 @@ const win = (idPlayer, elemento) => {
             }
         }
     }
+    empate()
 }
 
 // INSERE DISCOS
