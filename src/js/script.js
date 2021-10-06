@@ -39,10 +39,20 @@ const criarTabela = () => {
 }
 criarTabela();
 
+// MENSAGEM VITÓRIA
+const textoVitoria = document.createElement('div');
+const mensagemVitoria = (vencedor) => {
+    clearInterval(timer);
+    textoVitoria.innerText = (`Jogador ${vencedor} ganhou!!!`);
+    document.querySelector('#resultado').appendChild(textoVitoria);
+}
+
 // RESET
 let botaoReset = () => {
     const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
     criarTabela();
+
+    textoVitoria.innerText = '';
 
     matriz = [];
     zeraMatriz();
@@ -108,13 +118,12 @@ const win = (idPlayer, elemento) => {
             }
         }
         if (counterRow >= 3) {
-            console.log(`Jogador ${playerNumber} ganhou!!!`)
-            // return winMessage()
+            return mensagemVitoria(playerNumber);
         }
     }
 
     // CONFERE POR COLUNA
-    for (let m = 0; m < matriz.length; m++) {
+    for (let m = 0; m < matriz.length + 1; m++) {
         let counterCol = 0;
         for (let n = 0; n < matriz.length - 1; n++) {
             if (matriz[n][m] === playerNumber &&
@@ -122,8 +131,7 @@ const win = (idPlayer, elemento) => {
                 counterCol++
         }
         if (counterCol >= 3) {
-            console.log(`Jogador ${playerNumber} ganhou!!!`)
-            // return winMessage()
+            return mensagemVitoria(playerNumber);
         }
     }
 
@@ -169,8 +177,8 @@ const win = (idPlayer, elemento) => {
                 if (discoAnterior.firstChild !== null) {
                     if (discoAnterior.firstChild.id === idPlayer) {
                         discoDiagonalEsqBaixo++;
-                        if (discoDiagonalEsqBaixo === 3) {
-                            console.log('ganhou', idPlayer)
+                        if (discoDiagonalEsqBaixo >= 3) {
+                            return mensagemVitoria(playerNumber);
                         }
                     }
                 }
@@ -191,8 +199,8 @@ const win = (idPlayer, elemento) => {
                 if (discoAnteriorCima.firstChild !== null) {
                     if (discoAnteriorCima.firstChild.id === idPlayer) {
                         discoDiagonalEsqCima++;
-                        if (discoDiagonalEsqCima === 3) {
-                            console.log('ganhou', idPlayer)
+                        if (discoDiagonalEsqCima >= 3) {
+                            return mensagemVitoria(playerNumber);
                         }
                     }
                 }
@@ -246,9 +254,6 @@ function insereDisco(evt) {
     }
 }
 
-// const textoVitoria = document.createElement('div');
-// textoVitoria.innerHTML()
-// document.querySelector('.container').appendChild(textoVitoria);
 
 // CONTADOR
 const contador = () => {
@@ -287,6 +292,3 @@ const resetaCronometro = () => {
     cronometroBox.innerHTML = `Tempo: 00:00:00`
 }
 resetaCronometro();
-
-// colocar dentro da winMessage() para pausar o cronometro
-// clearInterval(timer);
