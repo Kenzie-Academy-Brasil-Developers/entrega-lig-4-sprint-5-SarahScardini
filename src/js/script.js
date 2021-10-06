@@ -45,6 +45,12 @@ const mensagemVitoria = (vencedor) => {
     clearInterval(timer);
     textoVitoria.innerText = (`Jogador ${vencedor} ganhou!!!`);
     document.querySelector('#resultado').appendChild(textoVitoria);
+    if (vencedor === 1) {
+        points1++
+    } else {
+        points2++
+    }
+    score();
 }
 
 // EMPATE
@@ -338,6 +344,18 @@ const resetaCronometro = () => {
     segundos = 0;
     milisegundos = 0;
     clearInterval(timer);
-    cronometroBox.innerHTML = `Tempo: 00:00:00`
+    cronometroBox.innerHTML = `Tempo: 00:00:00`;
 }
 resetaCronometro();
+
+// SCORE 
+let score1 = document.querySelector('.placar1');
+let score2 = document.querySelector('.placar2');
+let points1 = 0;
+let points2 = 0;
+
+const score = () => {
+    score1.innerHTML = `Jogador 1: ${points1}`;
+    score2.innerHTML = `Jogador 2: ${points2}`;
+};
+score();
