@@ -200,17 +200,19 @@ const win = (idPlayer, elemento) => {
 //         }
 //     }
 
-
-    for (let q = 0; q < matriz.length; q++) {//linha
-        let counterDiagEsq = 0;
-        for (let r = 0; r < matriz.length; r++) {//coluna
-            // console.log(matriz[r],'r',[q],'q')
-            console.log('matriz[q+1]', matriz[q+1])
-            // if (matriz[q + 1] !== ) {
+    let counterDiagEsq = 0;
+    for (let q = 0; q < matriz.length - 1; q++) {//linha       
+        console.log('matriz[q+1]', matriz[q+1])
+        for (let r = 0; r < matriz.length + 1; r++) {//coluna       
+                     
                  if (matriz[q][r] === playerNumber &&
-                    matriz[q + 1][r - 1] === playerNumber)
-                    counterDiagEsq++
-            // }
+                    matriz[q][r] === matriz[q + 1][r - 1]){
+                          counterDiagEsq++;
+                          console.log('counterDiagEsq', counterDiagEsq);
+                          console.log('matriz[q + 1][r - 1]', matriz[q + 1][r - 1])
+                    }
+                  
+            
            
         }
         if (counterDiagEsq >= 3) {
