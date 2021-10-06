@@ -143,18 +143,18 @@ const win = (idPlayer, elemento) => {
         }
     }
 
-    // Diag direita baixo/esquerda cima
-    for (let a = 0; a < matriz.length - 3; a++){
-        for (let b = 0;b <= matriz.length - 3; b++){
+    // DIAGONAL DIREITA BAIXO/ESQUERDA CIMA
+    for (let a = 0; a < matriz.length - 3; a++) {
+        for (let b = 0; b <= matriz.length - 3; b++) {
             if (matriz[a][b] === playerNumber &&
                 matriz[a + 1][b + 1] === playerNumber &&
                 matriz[a + 2][b + 2] === playerNumber &&
-                matriz[a + 3][b + 3] === playerNumber){
+                matriz[a + 3][b + 3] === playerNumber) {
                 return mensagemVitoria(playerNumber);
-             }
+            }
         }
     }
-  
+
     ////VERSÃO OTÁVIO
     // Diag direita cima/esquerda baixo
     // for (let a = 3; a < matriz.length; a++){
@@ -167,7 +167,7 @@ const win = (idPlayer, elemento) => {
     //         }
     //     }
     // }
-  
+
     ////VERSÃO GUSTAVO
     // // VITÓRIA LINHA
     // for (let i = 0; i < linhaInteira.length; i++) {
@@ -197,30 +197,31 @@ const win = (idPlayer, elemento) => {
     //     }
     // }
 
-    // let discoDiagonalEsqBaixo = 0;
-    // let colAnteriorY = colunaY;
-    // let linhaXAnt = linhaX;
+    let discoDiagonalEsqBaixo = 0;
+    let colAnteriorY = colunaY;
+    let linhaXAnt = linhaX;
 
     // VITÓRIA DIAGONAL ESQUERDA BAIXO
-    // for (let k = 1; k < 4; k++) {
-    //     // div com o disco.coluna.tabela.filhos da tabela
-    //     let colAnterior = elemento.parentElement.parentElement.childNodes[--colAnteriorY];
-    //     if (colAnterior !== undefined) {
-    //         let discoAnterior = colAnterior.childNodes[++linhaXAnt]
-    //         if (discoAnterior !== undefined) {
-    //             if (discoAnterior.firstChild !== null) {
-    //                 if (discoAnterior.firstChild.id === idPlayer) {
-    //                     discoDiagonalEsqBaixo++;
-    //                     if (discoDiagonalEsqBaixo === 3) {
-    //                         console.log('ganhou', idPlayer)
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+    for (let k = 1; k < 4; k++) {
+        // div com o disco.coluna.tabela.filhos da tabela
+        let colAnterior = elemento.parentElement.parentElement.childNodes[--colAnteriorY];
+        if (colAnterior !== undefined) {
+            let discoAnterior = colAnterior.childNodes[++linhaXAnt]
+            if (discoAnterior !== undefined) {
+                if (discoAnterior.firstChild !== null) {
+                    if (discoAnterior.firstChild.id === idPlayer) {
+                        discoDiagonalEsqBaixo++;
+                        if (discoDiagonalEsqBaixo === 3) {
+                            // console.log('ganhou', idPlayer)
+                            return mensagemVitoria(playerNumber);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-    // VITÓRIA DIAGONAL ESQUERDA CIMA
+    // VITÓRIA DIAGONAL DIREITA
     // let discoDiagonalEsqCima = 0;
     //  let colPosteriorY = colunaY;
     //     let linhaXProx = linhaX;
@@ -242,24 +243,19 @@ const win = (idPlayer, elemento) => {
     //         }
     //     }
 
-    let counterDiagEsq = 0;
-    for (let q = 0; q < matriz.length - 1; q++) {//linha       
-        console.log('matriz[q+1]', matriz[q+1])
-        for (let r = 0; r < matriz.length + 1; r++) {//coluna       
-                     
-                 if (matriz[q][r] === playerNumber &&
-                    matriz[q][r] === matriz[q + 1][r - 1]){
-                          counterDiagEsq++;
-                          console.log('counterDiagEsq', counterDiagEsq);
-                          console.log('matriz[q + 1][r - 1]', matriz[q + 1][r - 1])
-                  }
-        }
-        if (counterDiagEsq >= 3) {
-            console.log(`Jogador ${playerNumber} ganhou!!!`)
-            // return winMessage()
-        }
-    }
-  
+    // let counterDiagEsq = 0;
+    // for (let q = 0; q < matriz.length - 1; q++) {//linha       
+    //     for (let r = 0; r < matriz.length + 1; r++) {//coluna       
+    //         if (matriz[q][r] === playerNumber &&
+    //             matriz[q][r] === matriz[q + 1][r - 1]) {
+    //             counterDiagEsq++;
+    //         }
+    //     }
+    //     if (counterDiagEsq >= 3) {
+    //         return mensagemVitoria(playerNumber);
+    //     }
+    // }
+
     empate()
 }
 
@@ -333,7 +329,6 @@ const cronometro = () => {
         minutos++;
         segundos = 0;
     }
-
     cronometroBox.innerHTML = `Tempo: 0${minutos}:${segundos > 10 ? segundos :
         '0' + segundos}:${milisegundos}`;
 }
