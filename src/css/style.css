@@ -62,27 +62,28 @@ main .container {
 
 .disco {
     background-color: black;
-    border: 4px solid black;
+    border: 2px solid black;
     border-radius: 50%;
     height: 41px;
     margin-left: -1px;
     position: absolute;
     width: 41px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 } 
 
 #disco__p1 {
     background-color: var(--yellow);
     background-image: url("../assets/img/psyduck.png");
-    display: flex;
-    justify-content: center;
+    animation: cairCima 0.8s;
 }
 
 #disco__p2 {
     background-color: var(--dark-blue);
     background-image: url("../assets/img/monkey.png");
-    display: flex;
-    justify-content: center;
+    animation: cairLado 0.8s;
 }
 
 .reset{
@@ -197,22 +198,25 @@ span {
 
 .imagemVitoria, .imagemEmpate{
     background-size: cover;
-    margin: 0 auto;
     position: absolute;
+    left: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    right: 0; 
     z-index: 1;
 }
 
 .imagemVitoria{
     background-image: url('../assets/img/jolly-chimp.gif');
     height: 60px;
-    top: -346px;
+    top: 242px;
     width: 90px;
 }
 
 .imagemEmpate{
     background-image: url('../assets/img/happy-chimp.gif');
     height: 68px;
-    top: -329px;
+    top: 256px;
     width: 57px;
 }
 
@@ -226,9 +230,8 @@ button:active{
 }
 
 .img {
-    width: 50px;
-    height: 50px;
-
+    width: 30px;
+    height: 30px;
 }
 
 
@@ -256,6 +259,7 @@ button:active{
     .disco{
         height: 62px;
         width: 62px;
+        border: 4px solid black;
     }
     .reset {
         font-size: 20px;
@@ -294,12 +298,35 @@ button:active{
     }
     .imagemVitoria {
         height: 80px;
-        top: -505px;
+        top: 496px;
         width: 120px;
     }
     .imagemEmpate{
         height: 90px;
-        top: -484px;
+        top: 284px;
         width: 76px;
+    }
+
+    .img {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* KEYFRAMES */
+@keyframes cairCima {
+    from { 
+        transform: translate(-600px, -600px)
+    }
+    to   {
+        transform: translate(0px, 0px)
+    }
+}
+@keyframes cairLado {
+    from { 
+        transform: translate(600px, -600px)
+    }
+    to   {
+        transform: translateX(0px)
     }
 }
