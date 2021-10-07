@@ -85,14 +85,22 @@ gerarBotao();
 // VERIFICA SE A CAIXA ESTÁ VAZIA
 const verifica = (e) => {
     let elementoVazio = e.currentTarget.childNodes;
+    
+         for (let i = e.currentTarget.childNodes.length - 1; i >= 0; i--) {
 
-    for (let i = e.currentTarget.childNodes.length - 1; i >= 0; i--) {
+            if (elementoVazio[i].innerHTML === '') {
 
-        if (elementoVazio[i].innerHTML === '') {
-            let posicao = elementoVazio[i];
+                return e.currentTarget.childNodes[i];
+            }
+        } 
+}
 
-            return e.currentTarget.childNodes[i];
-        }
+// IMPEDE A JOGADA DEPOIS DA VITÓRIA
+const verificaVitoria = () => {
+    if(document.querySelector('#resultado').innerHTML !== null){
+       for(let i = 0; i < matriz.length + 1; i++){
+           document.getElementsByClassName('colunas')[i].removeEventListener('click', insereDisco);
+       }
     }
 }
 
@@ -115,6 +123,7 @@ const win = (idPlayer, elemento) => {
                 matriz[k][l] === matriz[k][l + 1] &&
                 matriz[k][l + 1] === matriz[k][l + 2] &&
                 matriz[k][l + 2] === matriz[k][l + 3]) {
+                verificaVitoria();
                 return mensagemVitoria(playerNumber);
             }
         }
@@ -127,6 +136,7 @@ const win = (idPlayer, elemento) => {
                 matriz[n][m] === matriz[n + 1][m] &&
                 matriz[n + 1][m] === matriz[n + 2][m] &&
                 matriz[n + 2][m] === matriz[n + 3][m]) {
+                verificaVitoria();
                 return mensagemVitoria(playerNumber);
             }
         }
@@ -139,6 +149,7 @@ const win = (idPlayer, elemento) => {
                 matriz[a + 1][b + 1] === playerNumber &&
                 matriz[a + 2][b + 2] === playerNumber &&
                 matriz[a + 3][b + 3] === playerNumber) {
+                verificaVitoria();
                 return mensagemVitoria(playerNumber);
             }
         }
@@ -151,6 +162,7 @@ const win = (idPlayer, elemento) => {
                 matriz[q + 1][r - 1] === playerNumber &&
                 matriz[q + 2][r - 2] === playerNumber &&
                 matriz[q + 3][r - 3] === playerNumber) {
+                verificaVitoria();                    
                 return mensagemVitoria(playerNumber);
             }
         }
@@ -252,3 +264,4 @@ const score = () => {
     score2.innerHTML = `Jogador 2: ${points2}`;
 };
 score();
+
