@@ -70,11 +70,13 @@ main .container {
 } 
 
 #disco__p1 {
-    background-color: var(--yellow);
+    background-color: var(--dark-red);
+    animation: cairCima 0.8s;
 }
 
 #disco__p2 {
-    background-color:var(--blue);
+    background-color:var(--dark-blue);
+    animation: cairLado 0.8s;
 }
 
 .reset{
@@ -289,5 +291,23 @@ button:active{
         height: 90px;
         top: 284px;
         width: 76px;
+    }
+}
+
+/* KEYFRAMES */
+@keyframes cairCima {
+    from { 
+        transform: translate(-468px, -400px)
+    }
+    to   {
+        transform: translate(0px, 0px)
+    }
+}
+@keyframes cairLado {
+    from { 
+        transform: translateX(-668px)
+    }
+    to   {
+        transform: translateX(0px)
     }
 }
