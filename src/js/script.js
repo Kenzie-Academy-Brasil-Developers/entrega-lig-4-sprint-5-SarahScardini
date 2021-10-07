@@ -173,7 +173,7 @@ const win = (idPlayer, elemento) => {
             }
         }
     }
-    
+
     empate()
 }
 
@@ -186,13 +186,13 @@ function insereDisco(evt) {
             case true: {
                 //player1
                 const disco = document.createElement('div');
-                const img   = document.createElement('img');
+                const img = document.createElement('img');
                 img.src = "src/assets/img/psyduck.png";
                 img.setAttribute('class', 'img')
                 disco.appendChild(img);
                 disco.setAttribute('class', 'disco');
                 disco.setAttribute('id', 'disco__p1');
-                
+
 
                 const idP1 = 'disco__p1';
                 celulaVaga.appendChild(disco);
@@ -210,11 +210,10 @@ function insereDisco(evt) {
                 disco.setAttribute('class', 'disco');
                 disco.setAttribute('id', 'disco__p2');
 
-                const img   = document.createElement('img');
+                const img = document.createElement('img');
                 img.src = "src/assets/img/monkey.png";
                 img.setAttribute('class', 'img')
                 disco.appendChild(img);
-                
 
                 const idP2 = 'disco__p2';
                 celulaVaga.appendChild(disco);
@@ -281,4 +280,3 @@ const score = () => {
     score2.innerHTML = `Jogador 2: ${points2}`;
 };
 score();
-
