@@ -18,15 +18,19 @@ main {
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 0 30px 30px;
+    margin: 15px 30px;
 }
 
 main .container { 
     order: 3; 
 }
 
-#titulo img{   
-    width: 200px;
+#titulo {
+    background-image: url(../assets/img/super1.png);
+    background-size: cover;
+    height: 110px;
+    margin-left: -20px;
+    width: 180px;
 }
 
 .container{
@@ -202,14 +206,14 @@ span {
 .imagemVitoria{
     background-image: url('../assets/img/jolly-chimp.gif');
     height: 60px;
-    top: 242px;
+    top: 236px;
     width: 90px;
 }
 
 .imagemEmpate{
     background-image: url('../assets/img/happy-chimp.gif');
     height: 68px;
-    top: 256px;
+    top: 252px;
     width: 57px;
 }
 
@@ -227,9 +231,11 @@ button:active{
     main{
         margin: 5px 30px 30px;
     }
-    #titulo img{
-        content: url('../assets/img/super2.png');
-        width: 500px;
+    #titulo {
+        background-image: url('../assets/img/super2.png');
+        height: 110px;
+        margin-left: 0px;
+        width: 460px;
     }
     #tabela{
         width: 490px;
@@ -284,12 +290,12 @@ button:active{
     }
     .imagemVitoria {
         height: 80px;
-        top: 267px;
+        top: 238px;
         width: 120px;
     }
     .imagemEmpate{
         height: 90px;
-        top: 284px;
+        top: 259px;
         width: 76px;
     }
 }
