@@ -70,12 +70,11 @@ main .container {
 } 
 
 #disco__p1 {
-    background-color: var(--dark-red);
-    transition: .5s;
+    background-color: var(--yellow);
 }
 
 #disco__p2 {
-    background-color:var(--dark-blue);
+    background-color:var(--blue);
 }
 
 .reset{
@@ -190,22 +189,25 @@ span {
 
 .imagemVitoria, .imagemEmpate{
     background-size: cover;
-    margin: 0 auto;
-    position: relative;
+    left: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    position: absolute;
+    right: 0; 
     z-index: 1;
 }
 
 .imagemVitoria{
     background-image: url('../assets/img/jolly-chimp.gif');
     height: 60px;
-    top: -346px;
+    top: 242px;
     width: 90px;
 }
 
 .imagemEmpate{
     background-image: url('../assets/img/happy-chimp.gif');
     height: 68px;
-    top: -329px;
+    top: 256px;
     width: 57px;
 }
 
@@ -280,12 +282,12 @@ button:active{
     }
     .imagemVitoria {
         height: 80px;
-        top: -505px;
+        top: 267px;
         width: 120px;
     }
     .imagemEmpate{
         height: 90px;
-        top: -484px;
+        top: 284px;
         width: 76px;
     }
 }
