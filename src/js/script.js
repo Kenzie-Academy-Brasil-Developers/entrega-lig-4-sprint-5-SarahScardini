@@ -186,8 +186,13 @@ function insereDisco(evt) {
             case true: {
                 //player1
                 const disco = document.createElement('div');
+                const img   = document.createElement('img');
+                img.src = "src/assets/img/psyduck.png";
+                img.setAttribute('class', 'img')
+                disco.appendChild(img);
                 disco.setAttribute('class', 'disco');
                 disco.setAttribute('id', 'disco__p1');
+                
 
                 const idP1 = 'disco__p1';
                 celulaVaga.appendChild(disco);
@@ -204,6 +209,12 @@ function insereDisco(evt) {
                 const disco = document.createElement('div');
                 disco.setAttribute('class', 'disco');
                 disco.setAttribute('id', 'disco__p2');
+
+                const img   = document.createElement('img');
+                img.src = "src/assets/img/monkey.png";
+                img.setAttribute('class', 'img')
+                disco.appendChild(img);
+                
 
                 const idP2 = 'disco__p2';
                 celulaVaga.appendChild(disco);

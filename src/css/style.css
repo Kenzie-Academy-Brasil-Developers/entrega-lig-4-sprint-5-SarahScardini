@@ -9,9 +9,10 @@
 body{
     background-image: url("../assets/img/spacebackground.jpeg");
     background-size: 100%;
-    background-position: center;
+    background-position: center; 
     background-repeat: no-repeat;
     background-color: #15262d;   
+    position: relative;
 }
 
 main {
@@ -71,15 +72,21 @@ main .container {
     margin-left: -1px;
     position: absolute;
     width: 41px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 } 
 
 #disco__p1 {
-    background-color: var(--dark-red);
+    background-color: var(--yellow);
+    background-image: url("../assets/img/psyduck.png");
     animation: cairCima 0.8s;
 }
 
 #disco__p2 {
-    background-color:var(--dark-blue);
+    background-color: var(--dark-blue);
+    background-image: url("../assets/img/monkey.png");
     animation: cairLado 0.8s;
 }
 
@@ -195,10 +202,10 @@ span {
 
 .imagemVitoria, .imagemEmpate{
     background-size: cover;
+    position: absolute;
     left: 0; 
     margin-left: auto; 
     margin-right: auto; 
-    position: absolute;
     right: 0; 
     z-index: 1;
 }
@@ -226,6 +233,12 @@ button:active{
     transform: translateY(2px);
 }
 
+.img {
+    width: 30px;
+    height: 30px;
+}
+
+
 /* MEDIA QUERY */
 @media screen and (min-width:700px){
     main{
@@ -252,6 +265,7 @@ button:active{
     .disco{
         height: 62px;
         width: 62px;
+        border: 4px solid black;
     }
     .reset {
         font-size: 20px;
@@ -290,7 +304,7 @@ button:active{
     }
     .imagemVitoria {
         height: 80px;
-        top: 238px;
+        top: 496px;
         width: 120px;
     }
     .imagemEmpate{
@@ -298,12 +312,17 @@ button:active{
         top: 259px;
         width: 76px;
     }
+
+    .img {
+        width: 45px;
+        height: 45px;
+    }
 }
 
 /* KEYFRAMES */
 @keyframes cairCima {
     from { 
-        transform: translate(-468px, -400px)
+        transform: translate(-600px, -600px)
     }
     to   {
         transform: translate(0px, 0px)
@@ -311,7 +330,7 @@ button:active{
 }
 @keyframes cairLado {
     from { 
-        transform: translateX(-668px)
+        transform: translate(600px, -600px)
     }
     to   {
         transform: translateX(0px)
