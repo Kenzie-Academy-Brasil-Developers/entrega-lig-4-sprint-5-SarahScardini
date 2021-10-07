@@ -9,9 +9,10 @@
 body{
     background-image: url("../assets/img/spacebackground.jpeg");
     background-size: 100%;
-    background-position: center;
+    background-position: center; 
     background-repeat: no-repeat;
     background-color: #15262d;   
+    position: relative;
 }
 
 main {
@@ -61,21 +62,27 @@ main .container {
 
 .disco {
     background-color: black;
-    border: 2px solid black;
+    border: 4px solid black;
     border-radius: 50%;
     height: 41px;
     margin-left: -1px;
     position: absolute;
     width: 41px;
+    
 } 
 
 #disco__p1 {
-    background-color: var(--dark-red);
-    transition: .5s;
+    background-color: var(--yellow);
+    background-image: url("../assets/img/psyduck.png");
+    display: flex;
+    justify-content: center;
 }
 
 #disco__p2 {
-    background-color:var(--dark-blue);
+    background-color: var(--dark-blue);
+    background-image: url("../assets/img/monkey.png");
+    display: flex;
+    justify-content: center;
 }
 
 .reset{
@@ -191,7 +198,7 @@ span {
 .imagemVitoria, .imagemEmpate{
     background-size: cover;
     margin: 0 auto;
-    position: relative;
+    position: absolute;
     z-index: 1;
 }
 
@@ -217,6 +224,13 @@ button:active{
     box-shadow: -1px 1px 1px black;
     transform: translateY(2px);
 }
+
+.img {
+    width: 50px;
+    height: 50px;
+
+}
+
 
 /* MEDIA QUERY */
 @media screen and (min-width:700px){
