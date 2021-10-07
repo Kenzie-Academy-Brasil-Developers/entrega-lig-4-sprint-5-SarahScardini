@@ -7,29 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/css/reset.css">
     <link rel="stylesheet" href="./src/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Lato&display=swap" rel="stylesheet">
     <title>Lig4</title>
 </head>
 
 <body>
     <main>
-        <h1 id="titulo">Super Lig-4</h1>
+        <h1 id="titulo"><img src="./src/assets/img/super1.png" alt="Logo Super Lig-4"></h1>
         <section class="container" id="container">
             <div id="tabela"></div>
             <div id="resultado"></div>
         </section>
+
         <div class="contador-cronometro__caixa">
             <div class="contadorCaixa">
+                <p>Movimentos</p>
                 <div class="contador__p1"></div>
                 <div class="contador__p2"></div>
             </div>
-            <span class="cronometro"></span>
+            <div class="cronometro__caixa">
+                <p>Tempo:</p>
+                <span class="cronometro"></span>
+            </div>
             <div class="placar">
-                <p>Placar:</p>
+                <p>Placar</p>
                 <div class="placar1"></div>
                 <div class="placar2"></div>
             </div>
         </div>
+
     </main>
     <script src="./src/js/script.js"></script>
 </body>

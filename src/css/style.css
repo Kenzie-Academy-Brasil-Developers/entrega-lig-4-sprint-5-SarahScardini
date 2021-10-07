@@ -1,189 +1,279 @@
 :root{
-    --black: black;
     --blue: #2a318b;
     --dark-blue: #240c60;
-    --red: 	#b6131b;
     --dark-red: #71192d;
+    --red: 	#b6131b;
     --yellow: #ecd300;
 }
 
-#titulo{   
-    text-align: center;
-    color: rgb(255, 255, 0);
-    letter-spacing: 5px;
-    font-size:60px;
-    font-family: 'Bangers', cursive;
-}
-.colunas{
-    flex-direction: column-reverse;
-    width: 100%;
-    height: 262px;
-    background-color:rgb(42, 139, 230, .5)  ;
+body{
+    background-image: url("../assets/img/spacebackground.jpeg");
+    background-size: 100%;
 }
 
-.caixas{
-    height: 43px;
-    width: 43px;
-    background-color: rgb(255, 255, 255, .1);
-    border-radius: 50%;
-    border: 2px solid rgb(42, 139, 230, .5);
+main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 30px 30px;
+}
+
+main .container { 
+    order: 3; 
+}
+
+#titulo img{   
+    width: 200px;
+}
+
+.container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 #tabela{
     display: flex;
     border: 4px solid rgb(0, 0, 0, .3);
-    /* width: 350px; */
-    width: 315px;
     height: 270px;
     position: relative;
+    width: 315px;
+}
+
+.colunas{
+    background-color:rgb(42, 139, 230, .5)  ;
+    flex-direction: column-reverse;
+    height: 262px;
+    width: 100%;
+}
+
+.caixas{
+    border: 2px solid rgb(42, 139, 230, .5);
+    background-color: rgb(255, 255, 255, .1);
+    border-radius: 50%;
+    height: 43px;
+    width: 43px;
 }
 
 .disco {
-    width: 41px;
-    height: 41px;
-    border-radius: 50%;
     background-color: black;
-    position: absolute;
     border: 2px solid black;
+    border-radius: 50%;
+    height: 41px;
     margin-left: -1px;
+    position: absolute;
+    width: 41px;
 } 
 
 #disco__p1 {
-    background-color:rgb(255, 0, 0);
+    background-color: var(--dark-red);
 }
 
 #disco__p2 {
-    background-color:rgb(163, 215, 229);
+    background-color:var(--dark-blue);
 }
+
 .reset{
-    margin-top: 30px;
-    padding: 15px;
-    border: 2px solid ;
     background-color: rgb(255, 255, 255, .5);
-    font-size: 30px;
+    border: 3px solid black;
+    border-radius: 5px;
+    box-shadow: -3px 3px 2px black;
+    cursor: pointer;
     font-family: 'Bangers', cursive;
-}
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-#resultado{
-    position: absolute;
-    right: 50%;
-    top: 60%;
-    transform: translate(50%,50%);
-    background-color: grey;
     font-size: 20px;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    padding: 10px;
+	transition-duration: 0.35s;
+}
+
+#resultado div{
+    color: var(--yellow);
+    background-color: var(--dark-red);
+    border-radius: 45px;
+    box-shadow: -4px 5px 4px 4px black;
+    font-family: 'Bangers';
+    font-size: 30px;
+    line-height: 2rem;
+    margin-top: -135px;
+    padding: 25px;
+    position: absolute;
+    text-align: center;
+    text-shadow: 3px 3px black;
+    text-transform: uppercase;
+    transform: translate(-50%, -50%);
+    width: 200px;
 }
 
 .contador-cronometro__caixa{
     align-items: center;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
+    height: 90px;
     justify-content: center;
+    width: 315px;
 }
-.contadorCaixa, .cronometro, .placar {
-   
-    border: 2px solid grey;
-    height: 75px;
-    padding: 8px 0 0 4px;
+
+.contadorCaixa, .cronometro__caixa, .placar {
     background-color: rgb(255, 255, 255, .5);
+    border: 3px solid var(--dark-blue);
+    font-size: 10px;
+    height: 75px;
+    line-height: 14px;
+    margin: 1px;
 }
+
 .contadorCaixa{
-    line-height: 1.75rem;
-    width: 230px;
-}
-/* .contador__p1{}
-.contador__p2{} */
-.cronometro{
     align-items: center;
     display: inherit;
-    width: 150px;
-}
-.contador-cronometro__caixa{
-    width: 315px;
-    height: 100px;
-    display: flex;
-}
-.contadorCaixa{
-    font-size: 13px;
-    line-height: 15px;
-    font-weight: 600;
-    width: 200px;
-}
-.cronometro{
-    font-size: 13px;
-    font-weight: 600;
-    padding-left: 20px;
-}
-.placar{
-    font-size: 13px;
-    padding-top: 15px;
-    width: 150px;
-    font-weight: 600;
-}
-.placar p{
-    text-align: center;
-    align-items: center;
-}
-body{
-    background-image: url("/src/assets/img/spacebackground.jpeg");
-    background-size: 100%;
-}
-main {
-    display: flex;
     flex-direction: column;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
+    width: 220px;
+}
+
+.contador__p1, .contador__p2, .placar1, .placar2, span{
+    font-size: 12px;
+}
+
+.contador__p1, .contador__p2, .placar1, .placar2, p, span{
+    font-family: 'Lato', sans-serif;
+}
+
+p{
+    font-weight: 900;
+    font-size: 14px;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+}
+
+.cronometro__caixa{
     align-items: center;
-  }
-  main .container { order: 3; }
-@media (min-width:700px){
-    #titulo{
-        /* text-align: start; */
-        font-size: 50px;
-        margin: 0 0;
+    display: inherit;
+    flex-direction: column;
+    font-size: 12px;
+    font-weight: 600;
+    justify-content: center;
+    text-align: center;
+    width: 110px;
+}
+
+.cronometro__caixa p, span{
+    margin-bottom: 7px;
+}
+
+span {
+    width: 40px;
+    margin-left: -11px;
+}
+
+.placar {
+    align-items: center;
+    display: inherit;
+    flex-flow: column wrap;
+    font-weight: 600;
+    justify-content: center;
+    width: 150px;
+}
+
+.placar p{
+    align-items: center;
+    text-align: center;
+}
+
+.imagemVitoria, .imagemEmpate{
+    background-size: cover;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.imagemVitoria{
+    background-image: url('../assets/img/jolly-chimp.gif');
+    height: 60px;
+    top: -346px;
+    width: 90px;
+}
+
+.imagemEmpate{
+    background-image: url('../assets/img/happy-chimp.gif');
+    height: 68px;
+    top: -329px;
+    width: 57px;
+}
+
+button:hover{
+    box-shadow: -2px 2px 2px black;
+}
+
+button:active{
+    box-shadow: -1px 1px 1px black;
+    transform: translateY(2px);
+}
+
+/* MEDIA QUERY */
+@media screen and (min-width:700px){
+    main{
+        margin: 5px 30px 30px;
+    }
+    #titulo img{
+        content: url('../assets/img/super2.png');
+        width: 500px;
+    }
+    #tabela{
+        width: 490px;
+        height: 420px;
     }
     .colunas{
         height: 412px;
     }
-    #tabela{
-        width: 490px;
-        height: 420px; ;
-    }
     .caixas{
+        border: 4px solid rgb(42, 139, 230);
         height: 68px;
         width: 68px;
-        border: 4px solid rgb(42, 139, 230);
     }
     .disco{
-        width: 62px;
         height: 62px;
+        width: 62px;
     }
-    .reset{
-        margin-top: 10px;
+    .reset {
         font-size: 20px;
-        padding:5px;
-
+        margin-top: 30px;
+        padding: 15px;
     }
-    #resultado{
-        top: 50%;
+    #resultado div {
+        font-size: 40px;
+        line-height: 3rem;
+        margin-top: -215px;
+        padding: 50px;
+        width: 250px;
     }
-    .contador-cronometro__caixa{
+    .contadorCaixa, .cronometro__caixa, .placar {   
         width: 490px;
+        height: 80px;
+        line-height: 19px;
     }
-    .placar div{
-        text-align: center;
-        margin-top: 5px;
+    .contador-cronometro__caixa {
+        width: 490px;
+        height: 90px;
     }
-    .cronometro{
-        text-align: center;
+    .contador__p1, .contador__p2, .placar1, .placar2, span{
+        font-size: 16px;
     }
-    .contadorCaixa{
-        text-align: center;
-        padding-top: 20px;
+    p{
+        font-size: 18px;
     }
-    .contadorCaixa div{
-        line-height: 20px;
+    .cronometro__caixa p, span {
+        margin-bottom: 11px;
+    }
+    span {
+        width: 50px;
+        margin-left: -14px;
+    }
+    .imagemVitoria {
+        height: 80px;
+        top: -505px;
+        width: 120px;
     }
 }
