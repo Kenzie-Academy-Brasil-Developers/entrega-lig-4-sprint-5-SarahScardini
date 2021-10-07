@@ -94,22 +94,19 @@ gerarBotao();
 // VERIFICA SE A CAIXA ESTÁ VAZIA
 const verifica = (e) => {
     let elementoVazio = e.currentTarget.childNodes;
-    
-         for (let i = e.currentTarget.childNodes.length - 1; i >= 0; i--) {
-
-            if (elementoVazio[i].innerHTML === '') {
-
-                return e.currentTarget.childNodes[i];
-            }
-        } 
+    for (let i = e.currentTarget.childNodes.length - 1; i >= 0; i--) {
+        if (elementoVazio[i].innerHTML === '') {
+            return e.currentTarget.childNodes[i];
+        }
+    }
 }
 
 // IMPEDE A JOGADA DEPOIS DA VITÓRIA
 const verificaVitoria = () => {
-    if(document.querySelector('#resultado').innerHTML !== null){
-       for(let i = 0; i < matriz.length + 1; i++){
-           document.getElementsByClassName('colunas')[i].removeEventListener('click', insereDisco);
-       }
+    if (document.querySelector('#resultado').innerHTML !== null) {
+        for (let i = 0; i < matriz.length + 1; i++) {
+            document.getElementsByClassName('colunas')[i].removeEventListener('click', insereDisco);
+        }
     }
 }
 
@@ -171,12 +168,12 @@ const win = (idPlayer, elemento) => {
                 matriz[q + 1][r - 1] === playerNumber &&
                 matriz[q + 2][r - 2] === playerNumber &&
                 matriz[q + 3][r - 3] === playerNumber) {
-                verificaVitoria();                    
+                verificaVitoria();
                 return mensagemVitoria(playerNumber);
             }
         }
-
     }
+    
     empate()
 }
 
