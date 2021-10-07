@@ -1,16 +1,16 @@
 const tabela = document.querySelector('#tabela');
-let player = true;
-let contPlayer1 = 0;
-let contPlayer2 = 0;
+let jogador = true;
+let contJogador1 = 0;
+let contJogador2 = 0;
 
 let matriz = [];
 const zeraMatriz = () => {
     for (let i = 0; i < 6; i++) {
-        let row = [];
+        let linha = [];
         for (let j = 0; j < 7; j++) {
-            row.push(0);
+            linha.push(0);
         }
-        matriz.push(row);
+        matriz.push(linha);
     }
 }
 zeraMatriz();
@@ -46,13 +46,13 @@ const mensagemVitoria = (vencedor) => {
     textoVitoria.innerText = (`Jogador ${vencedor} ganhou!!!`);
     textoVitoriaDiv.appendChild(textoVitoria);
     if (vencedor === 1) {
-        points1++
+        pontos1++
     } else {
-        points2++
+        pontos2++
     }
     clearInterval(timer);
     imagemVitoria.classList.add('imagemVitoria');
-    score();
+    placar();
 }
 
 // EMPATE
@@ -73,8 +73,8 @@ let botaoReset = () => {
     textoVitoriaDiv.innerHTML = '';
     matriz = [];
     zeraMatriz();
-    contPlayer1 = 0;
-    contPlayer2 = 0;
+    contJogador1 = 0;
+    contJogador2 = 0;
     contador();
     resetaCronometro();
     imagemVitoria.classList.remove('imagemVitoria');
@@ -111,26 +111,26 @@ const verificaVitoria = () => {
 }
 
 // FUNÇÃO VENCEDOR
-const win = (idPlayer, elemento) => {
+const vitoria = (idPlayer, elemento) => {
     let linhaX = elemento.dataset.linha;
     let colunaY = elemento.dataset.col;
-    let playerNumber = 1;
+    let numeroJogador = 1;
 
     if (idPlayer === 'disco__p2') {
-        playerNumber = 2;
+        numeroJogador = 2;
     }
 
-    matriz[linhaX][colunaY] = playerNumber;
+    matriz[linhaX][colunaY] = numeroJogador;
 
     // CONFERE POR LINHA
     for (let k = 0; k < matriz.length; k++) {
         for (let l = 0; l < matriz[k].length - 3; l++) {
-            if (matriz[k][l] === playerNumber &&
+            if (matriz[k][l] === numeroJogador &&
                 matriz[k][l] === matriz[k][l + 1] &&
                 matriz[k][l + 1] === matriz[k][l + 2] &&
                 matriz[k][l + 2] === matriz[k][l + 3]) {
                 verificaVitoria();
-                return mensagemVitoria(playerNumber);
+                return mensagemVitoria(numeroJogador);
             }
         }
     }
@@ -138,12 +138,12 @@ const win = (idPlayer, elemento) => {
     // CONFERE POR COLUNA
     for (let m = 0; m < matriz.length + 1; m++) {
         for (let n = 0; n < matriz.length - 3; n++) {
-            if (matriz[n][m] === playerNumber &&
+            if (matriz[n][m] === numeroJogador &&
                 matriz[n][m] === matriz[n + 1][m] &&
                 matriz[n + 1][m] === matriz[n + 2][m] &&
                 matriz[n + 2][m] === matriz[n + 3][m]) {
                 verificaVitoria();
-                return mensagemVitoria(playerNumber);
+                return mensagemVitoria(numeroJogador);
             }
         }
     }
@@ -151,12 +151,12 @@ const win = (idPlayer, elemento) => {
     // DIAGONAL DIREITA
     for (let a = 0; a < matriz.length - 3; a++) {
         for (let b = 0; b <= matriz.length - 3; b++) {
-            if (matriz[a][b] === playerNumber &&
-                matriz[a + 1][b + 1] === playerNumber &&
-                matriz[a + 2][b + 2] === playerNumber &&
-                matriz[a + 3][b + 3] === playerNumber) {
+            if (matriz[a][b] === numeroJogador &&
+                matriz[a + 1][b + 1] === numeroJogador &&
+                matriz[a + 2][b + 2] === numeroJogador &&
+                matriz[a + 3][b + 3] === numeroJogador) {
                 verificaVitoria();
-                return mensagemVitoria(playerNumber);
+                return mensagemVitoria(numeroJogador);
             }
         }
     }
@@ -164,12 +164,12 @@ const win = (idPlayer, elemento) => {
     // DIAGONAL ESQUERDA
     for (let q = 0; q < matriz.length - 3; q++) {//linha       
         for (let r = 0; r <= matriz.length; r++) {//coluna 
-            if (matriz[q][r] === playerNumber &&
-                matriz[q + 1][r - 1] === playerNumber &&
-                matriz[q + 2][r - 2] === playerNumber &&
-                matriz[q + 3][r - 3] === playerNumber) {
+            if (matriz[q][r] === numeroJogador &&
+                matriz[q + 1][r - 1] === numeroJogador &&
+                matriz[q + 2][r - 2] === numeroJogador &&
+                matriz[q + 3][r - 3] === numeroJogador) {
                 verificaVitoria();
-                return mensagemVitoria(playerNumber);
+                return mensagemVitoria(numeroJogador);
             }
         }
     }
@@ -182,7 +182,7 @@ function insereDisco(evt) {
     let celulaVaga = verifica(evt);
     if (celulaVaga !== undefined) {
 
-        switch (player) {
+        switch (jogador) {
             case true: {
                 //player1
                 const disco = document.createElement('div');
@@ -196,11 +196,11 @@ function insereDisco(evt) {
 
                 const idP1 = 'disco__p1';
                 celulaVaga.appendChild(disco);
-                contPlayer1++;
+                contJogador1++;
 
-                win(idP1, celulaVaga);
+                vitoria(idP1, celulaVaga);
 
-                player = !player;
+                jogador = !jogador;
                 break;
             }
 
@@ -217,16 +217,16 @@ function insereDisco(evt) {
 
                 const idP2 = 'disco__p2';
                 celulaVaga.appendChild(disco);
-                contPlayer2++;
+                contJogador2++;
 
-                win(idP2, celulaVaga);
+                vitoria(idP2, celulaVaga);
 
-                player = !player;
+                jogador = !jogador;
                 break;
             }
         }
         contador();
-        if (contPlayer1 + contPlayer2 === 1) {
+        if (contJogador1 + contJogador2 === 1) {
             timer = setInterval(() => { cronometro() }, 10);
         }
     }
@@ -236,8 +236,8 @@ function insereDisco(evt) {
 const contador = () => {
     let contador1 = document.querySelector('.contador__p1');
     let contador2 = document.querySelector('.contador__p2');
-    contador1.innerHTML = `Jogador 1: ${contPlayer1}`;
-    contador2.innerHTML = `Jogador 2: ${contPlayer2}`;
+    contador1.innerHTML = `Jogador 1: ${contJogador1}`;
+    contador2.innerHTML = `Jogador 2: ${contJogador2}`;
 }
 contador();
 
@@ -270,13 +270,13 @@ const resetaCronometro = () => {
 resetaCronometro();
 
 // SCORE 
-let score1 = document.querySelector('.placar1');
-let score2 = document.querySelector('.placar2');
-let points1 = 0;
-let points2 = 0;
+let placar1 = document.querySelector('.placar1');
+let placar2 = document.querySelector('.placar2');
+let pontos1 = 0;
+let pontos2 = 0;
 
-const score = () => {
-    score1.innerHTML = `Jogador 1: ${points1}`;
-    score2.innerHTML = `Jogador 2: ${points2}`;
+const placar = () => {
+    placar1.innerHTML = `Jogador 1: ${pontos1}`;
+    placar2.innerHTML = `Jogador 2: ${pontos2}`;
 };
-score();
+placar();
