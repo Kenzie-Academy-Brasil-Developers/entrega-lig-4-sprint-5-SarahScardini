@@ -38,15 +38,20 @@ criarTabela();
 
 // MENSAGEM VITÓRIA
 const textoVitoria = document.createElement('div');
+const textoVitoriaDiv = document.querySelector('#resultado');
+let imagemVitoria = document.createElement('div');
+document.body.appendChild(imagemVitoria);
+
 const mensagemVitoria = (vencedor) => {
-    clearInterval(timer);
     textoVitoria.innerText = (`Jogador ${vencedor} ganhou!!!`);
-    document.querySelector('#resultado').appendChild(textoVitoria);
+    textoVitoriaDiv.appendChild(textoVitoria);
     if (vencedor === 1) {
         points1++
     } else {
         points2++
     }
+    clearInterval(timer);
+    imagemVitoria.classList.add('imagemVitoria');
     score();
 }
 
@@ -54,8 +59,10 @@ const mensagemVitoria = (vencedor) => {
 const empate = () => {
     let matrizStr = matriz.toString().includes('0');
     if (!matrizStr) {
-        textoVitoria.innerHTML = `Empate!`;
         clearInterval(timer);
+        textoVitoria.innerText = `Empate!`;
+        textoVitoriaDiv.appendChild(textoVitoria);
+        imagemVitoria.classList.add('imagemEmpate');
     }
 }
 
@@ -63,13 +70,15 @@ const empate = () => {
 let botaoReset = () => {
     const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
     criarTabela();
-    textoVitoria.innerText = '';
+    textoVitoriaDiv.innerHTML = '';
     matriz = [];
     zeraMatriz();
     contPlayer1 = 0;
     contPlayer2 = 0;
     contador();
     resetaCronometro();
+    imagemVitoria.classList.remove('imagemVitoria');
+    imagemVitoria.classList.remove('imagemEmpate');
 }
 
 let gerarBotao = () => {
@@ -208,8 +217,8 @@ function insereDisco(evt) {
 const contador = () => {
     let contador1 = document.querySelector('.contador__p1');
     let contador2 = document.querySelector('.contador__p2');
-    contador1.innerHTML = `Movimentos do Jogador <strong>1</strong>: ${contPlayer1}`;
-    contador2.innerHTML = `Movimentos do Jogador <strong>2</strong>: ${contPlayer2}`;
+    contador1.innerHTML = `Jogador 1: ${contPlayer1}`;
+    contador2.innerHTML = `Jogador 2: ${contPlayer2}`;
 }
 contador();
 
@@ -228,7 +237,7 @@ const cronometro = () => {
         minutos++;
         segundos = 0;
     }
-    cronometroBox.innerHTML = `Tempo: 0${minutos}:${segundos > 10 ? segundos :
+    cronometroBox.innerHTML = `0${minutos}:${segundos > 10 ? segundos :
         '0' + segundos}:${milisegundos}`;
 }
 
@@ -237,7 +246,7 @@ const resetaCronometro = () => {
     segundos = 0;
     milisegundos = 0;
     clearInterval(timer);
-    cronometroBox.innerHTML = `Tempo: 00:00:00`;
+    cronometroBox.innerHTML = `00:00:00`;
 }
 resetaCronometro();
 
