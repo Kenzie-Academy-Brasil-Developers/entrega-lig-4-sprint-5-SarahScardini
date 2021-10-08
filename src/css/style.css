@@ -60,6 +60,7 @@ body{
     background-repeat: no-repeat;
     background-size: 100%;
     position: relative;
+    overflow: hidden;
 }
 
 main {
@@ -125,18 +126,23 @@ main .container {
 } 
 
 #disco__p1 {
-    animation: diagEsq 0.8s;
+    animation: cairCima 0.8s;
     background-color: var(--yellow);
     background-image: url("../assets/img/psyduck.png");
 }
 
 #disco__p2 {
-    animation: diagDir 0.8s;
+    animation: cairLado 0.8s;
     background-color: var(--dark-blue);
     background-image: url("../assets/img/monkey.png");
 }
 
-button{
+.img {
+    height: 30px;
+    width: 30px;
+}
+
+.reset{
     background-color: rgb(255, 255, 255, .5);
     border: 3px solid black;
     border-radius: 5px;
@@ -283,11 +289,6 @@ button:active{
     box-shadow: 0px 0px 2px 2px var(--blue); 
 }
 
-.img {
-    height: 30px;
-    width: 30px;
-}
-
 /* MEDIA QUERY */
 @media screen and (min-width:700px){
     main{
@@ -374,7 +375,7 @@ button:active{
 }
 
 /* KEYFRAMES */
-@keyframes diagEsq {
+@keyframes cairCima {
     from { 
         transform: translate(-600px, -600px);
     }
@@ -382,11 +383,20 @@ button:active{
         transform: translate(0px, 0px);
     }
 }
-@keyframes diagDir {
+@keyframes cairLado {
     from { 
         transform: translate(600px, -600px);
     }
     to{
         transform: translateX(0px);
+    }
+}
+@keyframes sairDaTela {
+    from {
+        transform: translate(0px);
+    }
+
+    to {
+        transform:translateY(2000px)
     }
 }

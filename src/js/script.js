@@ -68,17 +68,28 @@ const empate = () => {
 
 // RESET
 let botaoReset = () => {
-    const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
-    criarTabela();
-    textoVitoriaDiv.innerHTML = '';
-    matriz = [];
-    zeraMatriz();
-    contJogador1 = 0;
-    contJogador2 = 0;
-    contador();
+    const cair = document.querySelectorAll('.disco');
+   
+    for(let i = 0; i < cair.length; i++){
+        let random = Math.floor(Math.random() * (9 - 4)) + 4;
+        console.log(random)
+        cair[i].style.animation = `sairDaTela .${random}s`;
+    }
+  
     resetaCronometro();
-    imagemVitoria.classList.remove('imagemVitoria');
-    imagemVitoria.classList.remove('imagemEmpate');
+    setTimeout(()=>{
+        const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
+        criarTabela();
+        textoVitoriaDiv.innerHTML = '';
+        matriz = [];
+        zeraMatriz();
+        contJogador1 = 0;
+        contJogador2 = 0;
+        contador();
+        
+        imagemVitoria.classList.remove('imagemVitoria');
+        imagemVitoria.classList.remove('imagemEmpate');
+    }, 400)
 }
 
 let gerarBotao = () => {
@@ -312,10 +323,3 @@ choosePlayer()
 
 let choose = document.querySelectorAll('#initialDisc');
 let clicks = 0;
-
-// document.addEventListener('click', (event) =>{
-//     clicks++
-//     if(clicks <= )
-//     let disc = event.target;
-//     disc.style.boxShadow = '0px 0px 2px 2px red';
-// });
