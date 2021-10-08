@@ -83,8 +83,8 @@ let botaoReset = () => {
         textoVitoriaDiv.innerHTML = '';
         matriz = [];
         zeraMatriz();
-        contPlayer1 = 0;
-        contPlayer2 = 0;
+        contJogador1 = 0;
+        contJogador2 = 0;
         contador();
         
         imagemVitoria.classList.remove('imagemVitoria');
