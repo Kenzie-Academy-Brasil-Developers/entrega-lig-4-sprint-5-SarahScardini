@@ -13,6 +13,7 @@ body{
     background-repeat: no-repeat;
     background-color: #15262d;   
     position: relative;
+    overflow: hidden;
 }
 
 main {
@@ -75,13 +76,13 @@ main .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 } 
 
 #disco__p1 {
     background-color: var(--yellow);
     background-image: url("../assets/img/psyduck.png");
     animation: cairCima 0.8s;
+  
 }
 
 #disco__p2 {
@@ -334,5 +335,14 @@ button:active{
     }
     to   {
         transform: translateX(0px)
+    }
+}
+@keyframes sairDaTela {
+    from {
+        transform: translate(0px);
+    }
+
+    to {
+        transform:translateY(2000px)
     }
 }
