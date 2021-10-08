@@ -6,6 +6,53 @@
     --yellow: #ecd300;
 }
 
+.titlePage {
+    border: 3px solid blueviolet;
+    height: 230px;
+    width: 240px;
+    margin: 0 auto;
+    background: #4682b470;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-block: 185px;
+}
+
+.logoTitlePage {
+    width: 270px;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    top: -175px;
+    left: -21px;
+}
+.btnSwitch{
+    order: 2;
+}
+.discBox {
+    order: 1;
+    height: 50%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#initialDisc{
+    position: inherit;
+    margin: 3px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
 body{
     background-color: #15262d;   
     background-image: url("../assets/img/spacebackground.jpeg");
@@ -89,7 +136,7 @@ main .container {
     background-image: url("../assets/img/monkey.png");
 }
 
-.reset{
+button{
     background-color: rgb(255, 255, 255, .5);
     border: 3px solid black;
     border-radius: 5px;
@@ -232,11 +279,14 @@ button:active{
     transform: translateY(2px);
 }
 
+#initialDisc:hover{
+    box-shadow: 0px 0px 2px 2px var(--blue); 
+}
+
 .img {
     height: 30px;
     width: 30px;
 }
-
 
 /* MEDIA QUERY */
 @media screen and (min-width:700px){
@@ -314,6 +364,12 @@ button:active{
     .img {
         height: 45px;
         width: 45px;
+    }
+
+    .titlePage {
+        height: 350px;
+        width: 340px;
+        margin-block: 197px;
     }
 }
 

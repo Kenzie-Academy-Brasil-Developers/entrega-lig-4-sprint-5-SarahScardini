@@ -280,3 +280,42 @@ const placar = () => {
     placar2.innerHTML = `Jogador 2: ${pontos2}`;
 };
 placar();
+
+const titlePage = document.querySelector('.titlePage');
+const buttonSwitch = document.createElement('button');
+buttonSwitch.classList.add('btnSwitch');
+buttonSwitch.setAttribute('value', 'jogar');
+buttonSwitch.innerText = 'Jogar';
+titlePage.appendChild(buttonSwitch);
+buttonSwitch.addEventListener('click', () => {
+    let main = document.querySelector('main');
+    main.style.display = 'flex';
+    titlePage.style.display = 'none';
+});
+
+const collection = ['./src/assets/img/psyduck.png', './src/assets/img/monkey.png', './src/assets/img/duck.png', './src/assets/img/monkey2.png']
+let player1;
+let player2;
+
+const choosePlayer = () => {
+    let box = document.querySelector('.discBox')
+    for(let i = 0; i < collection.length; i++){
+        let chooseDisc = document.createElement('div');
+        chooseDisc.classList.add('disco', 'caixas', `disc${i}`);
+        chooseDisc.setAttribute('id', `initialDisc`)
+        chooseDisc.style.backgroundImage = `url(${collection[i]})`;
+        box.appendChild(chooseDisc)
+    }
+    titlePage.appendChild(box);
+}; 
+choosePlayer()
+
+let choose = document.querySelectorAll('#initialDisc');
+let clicks = 0;
+
+// document.addEventListener('click', (event) =>{
+//     clicks++
+//     if(clicks <= )
+//     let disc = event.target;
+//     disc.style.boxShadow = '0px 0px 2px 2px red';
+// });
