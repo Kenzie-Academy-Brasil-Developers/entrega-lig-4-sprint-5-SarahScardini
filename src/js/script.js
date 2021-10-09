@@ -69,15 +69,14 @@ const empate = () => {
 // RESET
 let botaoReset = () => {
     const cair = document.querySelectorAll('.disco');
-   
-    for(let i = 0; i < cair.length; i++){
+
+    for (let i = 0; i < cair.length; i++) {
         let random = Math.floor(Math.random() * (9 - 4)) + 4;
-        console.log(random)
         cair[i].style.animation = `sairDaTela .${random}s`;
     }
-  
+
     resetaCronometro();
-    setTimeout(()=>{
+    setTimeout(() => {
         const esvaziarTabela = document.querySelector('#tabela').innerHTML = '';
         criarTabela();
         textoVitoriaDiv.innerHTML = '';
@@ -86,7 +85,7 @@ let botaoReset = () => {
         contJogador1 = 0;
         contJogador2 = 0;
         contador();
-        
+
         imagemVitoria.classList.remove('imagemVitoria');
         imagemVitoria.classList.remove('imagemEmpate');
     }, 400)
@@ -198,12 +197,12 @@ function insereDisco(evt) {
                 //player1
                 const disco = document.createElement('div');
                 const img = document.createElement('img');
-                img.src = "src/assets/img/psyduck.png";
+                img.src = jogador1img;
                 img.setAttribute('class', 'img')
                 disco.appendChild(img);
                 disco.setAttribute('class', 'disco');
                 disco.setAttribute('id', 'disco__p1');
-
+                // disco.style.backgroundImage = `url(${jogador1img})`;
 
                 const idP1 = 'disco__p1';
                 celulaVaga.appendChild(disco);
@@ -218,12 +217,11 @@ function insereDisco(evt) {
             case false: {
                 // player2
                 const disco = document.createElement('div');
+                const img = document.createElement('img');
+                img.src = jogador2img;
+                img.setAttribute('class', 'img');
                 disco.setAttribute('class', 'disco');
                 disco.setAttribute('id', 'disco__p2');
-
-                const img = document.createElement('img');
-                img.src = "src/assets/img/monkey.png";
-                img.setAttribute('class', 'img')
                 disco.appendChild(img);
 
                 const idP2 = 'disco__p2';
@@ -291,3 +289,65 @@ const placar = () => {
     placar2.innerHTML = `Jogador 2: ${pontos2}`;
 };
 placar();
+
+const paginaInicial = document.querySelector('.paginaInicial');
+const btnTroca = document.createElement('button');
+btnTroca.classList.add('btnTroca');
+btnTroca.setAttribute('value', 'jogar');
+btnTroca.innerText = 'Jogar';
+paginaInicial.appendChild(btnTroca);
+btnTroca.addEventListener('click', () => {
+    if (clicks === 2) {
+        let main = document.querySelector('main');
+        main.style.display = 'flex';
+        paginaInicial.style.display = 'none';
+    } else {
+        let paragrafo = document.querySelector('p')
+        paragrafo.classList.add('pulsa');
+        setTimeout(() => {
+            paragrafo.classList.remove('pulsa');
+        }, 400)
+    }
+});
+
+const figuras = ['./src/assets/img/psyduck.png', './src/assets/img/monkey.png', './src/assets/img/duck.png', './src/assets/img/monkey2.png'];
+
+const escolhasDiscos = () => {
+    let discosCaixa = document.querySelector('.caixa__discos')
+    for (let i = 0; i < figuras.length; i++) {
+        let chooseDisc = document.createElement('div');
+        chooseDisc.classList.add('disco', 'caixas');
+        chooseDisc.setAttribute('id', `initialDisc`);
+        chooseDisc.dataset.number = `${i}`;
+        chooseDisc.style.backgroundImage = `url(${figuras[i]})`;
+        discosCaixa.appendChild(chooseDisc)
+    }
+    paginaInicial.appendChild(discosCaixa);
+};
+escolhasDiscos()
+
+let clicks = 0;
+let jogador1img;
+let jogador2img;
+
+document.addEventListener('click', (event) => {
+    let escolhido = event.target;
+    if (escolhido.id === 'initialDisc') {
+        clicks++
+        if (clicks < 3) {
+            escolhido.style.boxShadow = '0px 0px 4px 3px #2A8BE6';
+            switch (jogador) {
+                case true: {
+                    jogador1img = figuras[escolhido.dataset.number];
+                    escolhido.style.backgroundColor = 'var(--yellow)';
+                    break;
+                } case false: {
+                    jogador2img = figuras[escolhido.dataset.number];
+                    escolhido.style.backgroundColor = 'var(--dark-blue)';
+                    break;
+                }
+            }
+        }
+        jogador = !jogador;
+    }
+});

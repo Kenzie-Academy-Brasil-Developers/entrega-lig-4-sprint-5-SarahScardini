@@ -6,6 +6,63 @@
     --yellow: #ecd300;
 }
 
+.paginaInicial {
+    align-items: center;
+    background: #4682b470;
+    border: 3px solid var(--blue);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 290px;
+    margin: 0 auto;
+    margin-block: 175px;
+    padding: 10px;
+    width: 240px;
+}
+
+.paginaInicial p{
+    text-align: center;
+}
+
+.pulsa{
+    animation: pulsar 0.8s;
+    transform: scale(1);
+}
+
+.logoInicial {
+    left: -21px;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    right: 0;
+    top: -175px;
+    width: 270px;
+    z-index: 1;
+}
+.btnTroca{
+    order: 2;
+}
+.caixa__discos{
+    align-items: center;
+    align-content: center;
+    display: flex;
+    flex-flow: row wrap;
+    height: 50%;
+    justify-content: center;
+    order: 1;
+    width: 50%;
+}
+
+#initialDisc{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    margin: 3px;
+    position: inherit;
+}
+
 body{
     background-color: #15262d;   
     background-image: url("../assets/img/spacebackground.jpeg");
@@ -28,7 +85,7 @@ main .container {
 }
 
 #titulo {
-    background-image: url(../assets/img/super1.png);
+    background-image: url('../assets/img/super1.png');
     background-size: cover;
     height: 110px;
     margin-left: -20px;
@@ -79,15 +136,13 @@ main .container {
 } 
 
 #disco__p1 {
-    animation: cairCima 0.8s;
+    animation: cairCima 0.5s;
     background-color: var(--yellow);
-    background-image: url("../assets/img/psyduck.png");
 }
 
 #disco__p2 {
-    animation: cairLado 0.8s;
+    animation: cairLado 0.5s;
     background-color: var(--dark-blue);
-    background-image: url("../assets/img/monkey.png");
 }
 
 .img {
@@ -95,7 +150,7 @@ main .container {
     width: 30px;
 }
 
-.reset{
+button{
     background-color: rgb(255, 255, 255, .5);
     border: 3px solid black;
     border-radius: 5px;
@@ -238,6 +293,10 @@ button:active{
     transform: translateY(2px);
 }
 
+#initialDisc:hover{
+    box-shadow: 0px 0px 2px 2px var(--blue); 
+}
+
 /* MEDIA QUERY */
 @media screen and (min-width:700px){
     main{
@@ -315,6 +374,12 @@ button:active{
         height: 45px;
         width: 45px;
     }
+
+    .paginaInicial {
+        height: 350px;
+        width: 340px;
+        margin-block: 197px;
+    }
 }
 
 /* KEYFRAMES */
@@ -341,5 +406,23 @@ button:active{
 
     to {
         transform:translateY(2000px)
+    }
+}
+@keyframes pulsar {
+    0%{
+        transform: scale(0.90);
+        text-shadow: 0px 0px 3px #2A8BE6;
+    }
+    50%{
+        transform: scale(1);
+        text-shadow: 0px 0px 3px #2A8BE6;
+    }
+    90%{
+        transform: scale(0.90);
+        text-shadow: 0px 0px 3px #2A8BE6;
+    }
+    100%{
+        transform: scale(1);
+        text-shadow: 0px 0px 3px #2A8BE6;
     }
 }
