@@ -22,7 +22,7 @@
 }
 
 .paginaInicial p{
-    height: 30px;
+    height: 50px;
     line-height: 20px;
     text-align: center;
 }
@@ -148,7 +148,7 @@ main .container {
 }
 
 .img {
-    border-radius: 8px;
+    border-radius: 7px;
     height: 30px;
     width: 30px;
 }
@@ -403,9 +403,12 @@ button:active{
         width: 120px;
     }
     .paginaInicial {
-        height: 350px;
+        height: 450px;
         width: 340px;
         margin-block: 197px;
+    }
+    .img{
+        border-radius: 12.2px;
     }
 }
 
