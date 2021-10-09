@@ -95,7 +95,7 @@ let gerarBotao = () => {
     const botao = document.createElement('button');
     botao.innerText = 'Reset';
     botao.setAttribute('class', 'reset');
-    document.querySelector('.container').appendChild(botao);
+    document.querySelector('.botoes').appendChild(botao);
     const reset = document.querySelector('.reset');
     reset.onclick = botaoReset;
 }
@@ -290,19 +290,21 @@ const placar = () => {
 };
 placar();
 
+// PAGINA INICIAL
 const paginaInicial = document.querySelector('.paginaInicial');
+let paragrafo = document.querySelector('.paginaInicial p');
+const main = document.querySelector('main');
 const btnTroca = document.createElement('button');
 btnTroca.classList.add('btnTroca');
 btnTroca.setAttribute('value', 'jogar');
 btnTroca.innerText = 'Jogar';
 paginaInicial.appendChild(btnTroca);
+
 btnTroca.addEventListener('click', () => {
     if (clicks === 2) {
-        let main = document.querySelector('main');
         main.style.display = 'flex';
         paginaInicial.style.display = 'none';
     } else {
-        let paragrafo = document.querySelector('p')
         paragrafo.classList.add('pulsa');
         setTimeout(() => {
             paragrafo.classList.remove('pulsa');
@@ -310,14 +312,18 @@ btnTroca.addEventListener('click', () => {
     }
 });
 
-const figuras = ['./src/assets/img/psyduck.png', './src/assets/img/monkey.png', './src/assets/img/duck.png', './src/assets/img/monkey2.png'];
+// ESCOLHER PERSONAGEM
+const figuras = ['./src/assets/img/psyduck.png', './src/assets/img/monkey.png',
+    './src/assets/img/duck.png', './src/assets/img/monkey2.png',
+    './src/assets/img/rubberDuck.png', './src/assets/img/yoyo-monkey.png',
+    './src/assets/img/kenzie.png', './src/assets/img/kenzie-blocks.png'];
 
 const escolhasDiscos = () => {
-    let discosCaixa = document.querySelector('.caixa__discos')
+    let discosCaixa = document.querySelector('.caixa__discos');
     for (let i = 0; i < figuras.length; i++) {
         let chooseDisc = document.createElement('div');
         chooseDisc.classList.add('disco', 'caixas');
-        chooseDisc.setAttribute('id', `initialDisc`);
+        chooseDisc.setAttribute('id', `discoInicial`);
         chooseDisc.dataset.number = `${i}`;
         chooseDisc.style.backgroundImage = `url(${figuras[i]})`;
         discosCaixa.appendChild(chooseDisc)
@@ -329,25 +335,61 @@ escolhasDiscos()
 let clicks = 0;
 let jogador1img;
 let jogador2img;
+let escolhido1 = 20;
 
 document.addEventListener('click', (event) => {
     let escolhido = event.target;
-    if (escolhido.id === 'initialDisc') {
-        clicks++
-        if (clicks < 3) {
+    let escolhidoData = escolhido.dataset.number;
+
+    if (escolhidoData) {
+        if (clicks < 2 && escolhidoData !== escolhido1) {
+            clicks++
             escolhido.style.boxShadow = '0px 0px 4px 3px #2A8BE6';
+
             switch (jogador) {
                 case true: {
                     jogador1img = figuras[escolhido.dataset.number];
                     escolhido.style.backgroundColor = 'var(--yellow)';
+                    paragrafo.innerText = 'Selecione o jogador 2';
+                    escolhido1 = escolhido.dataset.number;
+                    jogador = !jogador;
                     break;
+
                 } case false: {
                     jogador2img = figuras[escolhido.dataset.number];
                     escolhido.style.backgroundColor = 'var(--dark-blue)';
+                    paragrafo.innerText = 'Click em jogar para começar!';
+                    jogador = !jogador;
                     break;
                 }
             }
         }
-        jogador = !jogador;
     }
 });
+
+// TROCAR PERSONAGEM
+const trocarPer = () => {
+    botaoReset()
+    setTimeout(() => {
+        jogador = true;
+        clicks = 0;
+        paragrafo.innerText = 'Selecione o jogador 1';
+        paginaInicial.style.display = 'flex';
+        main.style.display = 'none';
+        let discosCaixa = document.querySelector('.caixa__discos');
+        discosCaixa.innerHTML = '';
+        escolhido1 = 20;
+        escolhasDiscos();
+    }, 400)
+}
+
+const btnPersonagem = () => {
+    const btnEscolher = document.createElement('button');
+    btnEscolher.classList.add('escolherDnv');
+    btnEscolher.innerText = 'Escolher outro personagem';
+    document.querySelector('.botoes').appendChild(btnEscolher);
+
+    const btnPers = document.querySelector('.escolherDnv');
+    btnPers.onclick = trocarPer;
+}
+btnPersonagem();
