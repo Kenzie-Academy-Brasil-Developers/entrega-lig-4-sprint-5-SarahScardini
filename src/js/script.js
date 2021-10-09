@@ -335,12 +335,14 @@ escolhasDiscos()
 let clicks = 0;
 let jogador1img;
 let jogador2img;
+let escolhido1 = 20;
 
 document.addEventListener('click', (event) => {
     let escolhido = event.target;
+    let escolhidoData = escolhido.dataset.number;
 
-    if (escolhido.dataset.number) {
-        if (clicks < 2) {
+    if (escolhidoData) {
+        if (clicks < 2 && escolhidoData !== escolhido1) {
             clicks++
             escolhido.style.boxShadow = '0px 0px 4px 3px #2A8BE6';
 
@@ -349,6 +351,7 @@ document.addEventListener('click', (event) => {
                     jogador1img = figuras[escolhido.dataset.number];
                     escolhido.style.backgroundColor = 'var(--yellow)';
                     paragrafo.innerText = 'Selecione o jogador 2';
+                    escolhido1 = escolhido.dataset.number;
                     jogador = !jogador;
                     break;
 
@@ -375,6 +378,7 @@ const trocarPer = () => {
         main.style.display = 'none';
         let discosCaixa = document.querySelector('.caixa__discos');
         discosCaixa.innerHTML = '';
+        escolhido1 = 20;
         escolhasDiscos();
     }, 400)
 }
