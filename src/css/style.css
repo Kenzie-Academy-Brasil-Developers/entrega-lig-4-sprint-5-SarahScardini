@@ -340,7 +340,7 @@ button:active{
         width: 68px;
     }
     .disco{
-        border: 4px solid black;
+        border: 2px solid black;
         height: 62px;
         width: 62px;
     }
@@ -406,9 +406,6 @@ button:active{
         height: 450px;
         width: 340px;
         margin-block: 197px;
-    }
-    .img{
-        border-radius: 12.2px;
     }
 }
 
