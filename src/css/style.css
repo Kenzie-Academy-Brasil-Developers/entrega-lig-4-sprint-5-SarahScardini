@@ -7,18 +7,18 @@
 }
 
 .paginaInicial {
+    align-items: center;
+    background: #4682b470;
     border: 3px solid var(--blue);
     border-radius: 15px;
-    height: 290px;
-    width: 240px;
-    margin: 0 auto;
-    background: #4682b470;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    height: 290px;
+    margin: 0 auto;
     margin-block: 175px;
     padding: 10px;
+    width: 240px;
 }
 
 .paginaInicial p{
@@ -26,42 +26,41 @@
 }
 
 .pulsa{
-    transform: scale(1);
     animation: pulsar 0.8s;
+    transform: scale(1);
 }
 
 .logoInicial {
-    width: 270px;
+    left: -21px;
     margin-left: auto;
     margin-right: auto;
     position: absolute;
     right: 0;
-    z-index: 1;
     top: -175px;
-    left: -21px;
+    width: 270px;
+    z-index: 1;
 }
 .btnTroca{
     order: 2;
 }
 .caixa__discos{
-    order: 1;
-    height: 50%;
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
     align-items: center;
+    align-content: center;
+    display: flex;
+    flex-flow: row wrap;
+    height: 50%;
     justify-content: center;
-    flex-wrap: wrap;
+    order: 1;
+    width: 50%;
 }
 
 #initialDisc{
-    position: inherit;
-    margin: 3px;
     background-position: center;
-    background-size: contain;
     background-repeat: no-repeat;
+    background-size: contain;
     cursor: pointer;
+    margin: 3px;
+    position: inherit;
 }
 
 body{
