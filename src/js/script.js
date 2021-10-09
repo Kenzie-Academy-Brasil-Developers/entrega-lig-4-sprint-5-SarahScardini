@@ -316,7 +316,8 @@ btnTroca.addEventListener('click', () => {
 const figuras = ['./src/assets/img/psyduck.png', './src/assets/img/monkey.png',
     './src/assets/img/duck.png', './src/assets/img/monkey2.png',
     './src/assets/img/rubberDuck.png', './src/assets/img/yoyo-monkey.png',
-    './src/assets/img/kenzie.png', './src/assets/img/kenzie-blocks.png'];
+    './src/assets/img/astronaut.png','./src/assets/img/blue-rocket.png',
+    './src/assets/img/kenzie.png', './src/assets/img/kenzie-blocks.png']; 
 
 const escolhasDiscos = () => {
     let discosCaixa = document.querySelector('.caixa__discos');
@@ -335,7 +336,7 @@ escolhasDiscos()
 let clicks = 0;
 let jogador1img;
 let jogador2img;
-let escolhido1 = 20;
+let escolhido1 = -1;
 
 document.addEventListener('click', (event) => {
     let escolhido = event.target;
