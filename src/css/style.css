@@ -6,9 +6,10 @@
     --yellow: #ecd300;
 }
 
-.titlePage {
-    border: 3px solid blueviolet;
-    height: 230px;
+.paginaInicial {
+    border: 3px solid var(--blue);
+    border-radius: 15px;
+    height: 290px;
     width: 240px;
     margin: 0 auto;
     background: #4682b470;
@@ -16,10 +17,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-block: 185px;
+    margin-block: 175px;
+    padding: 10px;
 }
 
-.logoTitlePage {
+.paginaInicial p{
+    text-align: center;
+}
+
+.pulsa{
+    transform: scale(1);
+    animation: pulsar 0.8s;
+}
+
+.logoInicial {
     width: 270px;
     margin-left: auto;
     margin-right: auto;
@@ -29,10 +40,10 @@
     top: -175px;
     left: -21px;
 }
-.btnSwitch{
+.btnTroca{
     order: 2;
 }
-.discBox {
+.caixa__discos{
     order: 1;
     height: 50%;
     width: 50%;
@@ -75,7 +86,7 @@ main .container {
 }
 
 #titulo {
-    background-image: url(../assets/img/super1.png);
+    background-image: url('../assets/img/super1.png');
     background-size: cover;
     height: 110px;
     margin-left: -20px;
@@ -126,15 +137,13 @@ main .container {
 } 
 
 #disco__p1 {
-    animation: cairCima 0.8s;
+    animation: cairCima 0.5s;
     background-color: var(--yellow);
-    background-image: url("../assets/img/psyduck.png");
 }
 
 #disco__p2 {
-    animation: cairLado 0.8s;
+    animation: cairLado 0.5s;
     background-color: var(--dark-blue);
-    background-image: url("../assets/img/monkey.png");
 }
 
 .img {
@@ -142,7 +151,7 @@ main .container {
     width: 30px;
 }
 
-.reset{
+button{
     background-color: rgb(255, 255, 255, .5);
     border: 3px solid black;
     border-radius: 5px;
@@ -367,7 +376,7 @@ button:active{
         width: 45px;
     }
 
-    .titlePage {
+    .paginaInicial {
         height: 350px;
         width: 340px;
         margin-block: 197px;
@@ -398,5 +407,23 @@ button:active{
 
     to {
         transform:translateY(2000px)
+    }
+}
+@keyframes pulsar {
+    0%{
+        transform: scale(0.90);
+        text-shadow: 0px 0px 3px #2A8BE6;
+    }
+    50%{
+        transform: scale(1);
+        text-shadow: 0px 0px 3px #2A8BE6;
+    }
+    90%{
+        transform: scale(0.90);
+        text-shadow: 0px 0px 3px #2A8BE6;
+    }
+    100%{
+        transform: scale(1);
+        text-shadow: 0px 0px 3px #2A8BE6;
     }
 }
