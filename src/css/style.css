@@ -22,6 +22,8 @@
 }
 
 .paginaInicial p{
+    height: 30px;
+    line-height: 20px;
     text-align: center;
 }
 
@@ -51,10 +53,10 @@
     height: 50%;
     justify-content: center;
     order: 1;
-    width: 50%;
+    width: 90%;
 }
 
-#initialDisc{
+#discoInicial{
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -146,8 +148,17 @@ main .container {
 }
 
 .img {
+    border-radius: 8px;
     height: 30px;
     width: 30px;
+}
+
+.botoes{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    order: 3;
+    width: 310px;
 }
 
 button{
@@ -260,6 +271,14 @@ span {
     text-align: center;
 }
 
+.escolherDnv {
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0.9px;
+    padding: 10px;
+    width: 110px;
+}
+
 .imagemVitoria, .imagemEmpate{
     background-size: cover;
     left: 0; 
@@ -293,7 +312,7 @@ button:active{
     transform: translateY(2px);
 }
 
-#initialDisc:hover{
+#discoInicial:hover{
     box-shadow: 0px 0px 2px 2px var(--blue); 
 }
 
@@ -374,7 +393,15 @@ button:active{
         height: 45px;
         width: 45px;
     }
-
+    .botoes {
+        width: 500px;
+    }
+    .escolherDnv {
+        font-size: 14px;
+        line-height: 16px;
+        margin-top: 30px;
+        width: 120px;
+    }
     .paginaInicial {
         height: 350px;
         width: 340px;
@@ -411,18 +438,18 @@ button:active{
 @keyframes pulsar {
     0%{
         transform: scale(0.90);
-        text-shadow: 0px 0px 3px #2A8BE6;
+        text-shadow: 0px 0px 2px var(--blue);
     }
     50%{
         transform: scale(1);
-        text-shadow: 0px 0px 3px #2A8BE6;
+        text-shadow: 0px 0px 2px var(--blue);
     }
     90%{
         transform: scale(0.90);
-        text-shadow: 0px 0px 3px #2A8BE6;
+        text-shadow: 0px 0px 2px var(--blue);
     }
     100%{
         transform: scale(1);
-        text-shadow: 0px 0px 3px #2A8BE6;
+        text-shadow: 0px 0px 2px var(--blue);
     }
 }
